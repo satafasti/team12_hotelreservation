@@ -166,14 +166,14 @@ einen verbindlichen Nachweis meiner Reservierung zu haben.
 Hint: Verwende die Python-Bibliothek «smtplib» oder eine
 ähnliche.
 
-# Zusammenfassung Unterrichtseinheit 1 Iteration 1
+## Zusammenfassung Unterrichtseinheit 1 Iteration 1
 In der ersten Unterrichtseinheit haben wir grundlegende Programmierkonzepte in Python kennengelernt und diese durch praktische Anwendungen vertieft. Ein zentraler Bestandteil war das **Input-Process-Output (IPO)-Modell**, das den Ablauf einer Anwendung in **Datenaufnahme (Input), Verarbeitung (Process) und Ausgabe (Output)** unterteilt. Dieses Modell haben wir direkt in unseren Übungen angewendet.
 Wir haben eine **fiktive Musikdatenbank** erstellt, in der Musiktracks mit Variablen gespeichert wurden. Dabei haben wir unterschiedliche **Datentypen** kennengelernt, darunter Strings (*str*) für Namen und Kategorien sowie *float* für Preise. Mit der *type()*-Funktion konnten wir die Datentypen überprüfen.
 Um die Daten für den Nutzer verständlich auszugeben, haben wir uns mit der *print()*-Funktion und **formatierten Strings (*f"..."*)** beschäftigt. Zusätzlich haben wir die **Benutzereingabe mit *input()*** integriert, sodass der Nutzer angeben konnte, wie viele Tracks er kaufen möchte. Basierend auf dieser Eingabe wurde der **Gesamtpreis berechnet**. 
 Eine weitere wichtige Anwendung war die **Preisberechnung mit Rabatten**. Falls der Nutzer das gesamte Album kaufte, wurde automatisch ein **10 %-Rabatt** gewährt. Zudem haben wir gelernt, wie man **Dezimalzahlen formatiert** (*{:.2f}*), um Preise korrekt darzustellen.
 Diese Übungen gaben uns einen ersten Einblick in die Entwicklung datengetriebener Anwendungen. Besonders wichtig war dabei, den Programmablauf durch **Debugging und Testen mit *print()*** besser zu verstehen.
 
-# Zusammenfassung Unterrichtseinheit 1 Iteration 2
+## Zusammenfassung Unterrichtseinheit 1 Iteration 2
 In der zweiten Unterrichtseinheit haben wir uns intensiv mit **Bedingungen und Geschäftslogik** in Python beschäftigt. Dabei haben wir gelernt, wie Programme mithilfe von *if*, *elif* und *else* unterschiedliche Entscheidungen treffen können, um dynamisch auf verschiedene Szenarien zu reagieren.
 Die wichtigste Erkenntnis ist, dass Programme basierend auf Bedingungen verschiedene Aktionen ausführen können. Eine *if*-Bedingung prüft, ob eine Aussage wahr ist, und führt dann einen bestimmten Codeblock aus. Falls die Bedingung nicht zutrifft, greift *else* und es wird ein alternativer Code ausgeführt. Durch *elif* können mehrere Bedingungen nacheinander geprüft werden, um verschiedene Fälle zu unterscheiden. Diese Strukturen ermöglichen es, dass Programme flexibel auf unterschiedliche Situationen reagieren können, beispielsweise um nur digitale Musiktracks anzuzeigen.
 Ein weiterer wichtiger Aspekt war die Kombination von Bedingungen mit Datenverarbeitung. In den Übungen haben wir geprüft, welche Musiktracks digital verfügbar sind, und nur diese angezeigt. Dabei haben wir auch gelernt, wie *or* und *and* genutzt werden, um Mehrfachbedingungen zu definieren. Dies ist besonders wichtig, wenn Programme komplexere Entscheidungen treffen sollen, beispielsweise ob mindestens eine oder mehrere Bedingungen erfüllt sein müssen.
@@ -181,15 +181,15 @@ Zusätzlich haben wir die **Interaktion mit Benutzern** durch *input()* kennenge
 Unsere Übungen haben auch gezeigt, dass **Geschäftslogik** eine zentrale Rolle in der Programmierung spielt. Wir haben gelernt, wie man Regeln in Code umsetzt, zum Beispiel Rabatte berechnet, den Lagerbestand überprüft oder zwischen digitalen und physischen Medien unterscheidet. Diese Konzepte sind essenziell für reale Anwendungen, wie Online-Shops oder Buchungssysteme.
 Ein weiteres wichtiges Konzept, das wir kennengelernt haben, war die **Verwendung von Tuples**. Tuples sind eine effiziente Möglichkeit, **unveränderliche Daten** zu speichern, da sie nicht nachträglich verändert werden können. Dies ist besonders nützlich für feste Datensätze, wie Album- oder Trackinformationen.
 
-# Iteration 3 
+# Zusammenfassung Iteration 3 
 
-## Liste
+### Liste
 - Im Gegensatz zu Tupeln sind Listen veränderbar, d.h. die Elemente in Listen können hinzugefügt, aktualisiert oder entfernt werden
 - Liste in Listen
 - Index/Element einer Liste beginnt mit 0
 - Bei der Iteration in umgekehrter Reihenfolge können wir -1 als letztes Element in der Liste verwenden
 
-## Hinzufügen, Entfernen, Aktualisieren und Löschen von Listenelementen
+### Hinzufügen, Entfernen, Aktualisieren und Löschen von Listenelementen
 list.append(elem) -- fügt ein einzelnes Element an das Ende der Liste an. Häufiger Fehler: gibt nicht die neue Liste zurück, sondern ändert nur das Original.
 list.insert(index, elem) -- fügt das Element am angegebenen Index ein, wobei Elemente nach rechts verschoben werden.
 list.extend(list2) fügt die Elemente in list2 an das Ende der Liste an. Die Verwendung von + oder += auf eine Liste ist ähnlich wie die Verwendung von extend().
@@ -198,7 +198,7 @@ list.remove(elem) -- sucht nach der ersten Instanz des angegebenen Elements und 
 list.reverse() -- kehrt die Liste an Ort und Stelle um (gibt sie nicht zurück)
 list.pop(index) -- Entfernt das Element am angegebenen Index und gibt es zurück. Gibt das ganz rechte Element zurück, wenn index weggelassen wird (ungefähr das Gegenteil von append()).
 
-## For-Schleife
+### For-Schleife
 - um ein Stück Code für eine bestimmte Anzahl von Iterationen zu wiederholen
 - für jedes Element in einer Liste 
 - eine Schleife mit einer Liste kombinieren eine Platzhaltervariable verwenden 
@@ -213,17 +213,17 @@ Die Variable flag wird verwendet, um zu prüfen, ob das Element gefunden wurde o
 Verwenden Sie die Funktion len(), um die Anzahl der Titel in track_list anzuzeigen.
 Verwenden Sie die „in“-Klausel, um Titel mit einem Teiltitel zu suchen.
 
-## While-Schleife
+### While-Schleife
  Eine while-Schleife wird oft verwendet, um einen Codeblock zu wiederholen, solange eine bestimmte Bedingung erfüllt ist
 Bedingte Variable innerhalb der Schleife ändern 
 
  den booleschen Wert direkt als Variable X = y!= 5 setzen
 
- # K.I.S.S. Principle
+### K.I.S.S. Principle
 Keep It Simple, Stupid or Keep It Super Simple
 Choosing unnecessarily complex solutions make it difficult for other people to understand and maintain the code
 
-# Functions
+### Functions
 
 - For modularity in code. They represent "actions" can be reused. 
 - abstraction. 
@@ -239,7 +239,7 @@ Choosing unnecessarily complex solutions make it difficult for other people to u
 readability, understandability and extendability
 logical groupings 
 
-# Errors and Exceptions
+### Errors and Exceptions
 
 Python distinguishes between two types of problems in programming:
 Errors: These are problems that cannot be interpreted by Python and prevent the program from starting. Errors commonly indicate that something is missing or incomplete in the code and needs to be corrected before running a program. For example:
