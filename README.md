@@ -181,7 +181,7 @@ Zusätzlich haben wir die **Interaktion mit Benutzern** durch *input()* kennenge
 Unsere Übungen haben auch gezeigt, dass **Geschäftslogik** eine zentrale Rolle in der Programmierung spielt. Wir haben gelernt, wie man Regeln in Code umsetzt, zum Beispiel Rabatte berechnet, den Lagerbestand überprüft oder zwischen digitalen und physischen Medien unterscheidet. Diese Konzepte sind essenziell für reale Anwendungen, wie Online-Shops oder Buchungssysteme.
 Ein weiteres wichtiges Konzept, das wir kennengelernt haben, war die **Verwendung von Tuples**. Tuples sind eine effiziente Möglichkeit, **unveränderliche Daten** zu speichern, da sie nicht nachträglich verändert werden können. Dies ist besonders nützlich für feste Datensätze, wie Album- oder Trackinformationen.
 
-# Zusammenfassung Iteration 3 
+# Zusammenfassung Unterrichtseinheit 1 Iteration 3 
 
 ### Liste
 - Im Gegensatz zu Tupeln sind Listen veränderbar, d.h. die Elemente in Listen können hinzugefügt, aktualisiert oder entfernt werden
@@ -250,6 +250,14 @@ Exceptions: These are problems that occur when the program is running. When an e
 Python has the following syntax for handling exceptions:
 try
 except
+
+# Zusammenfassung Unterrichtseinheit 2 Iteration 1
+
+In dieser Unterrichtseinheit haben wir uns mit den Grundlagen von Object Oriented Programming (OOP) beschaeftigt. Wir haben gelernt, dass eine **class** ein Bauplan ist, in dem festgelegt wird, welche **attribute** (z. B. name, age, city) und **methoden** (z. B. eat(), sleep(), play()) ein Objekt besitzen soll. Eine **class** selbst fuehrt noch keinen Code aus, sondern dient als Vorlage fuer die Erstellung von **objects**. Ein **object** ist eine konkrete Instanz einer **class** mit eigenen Werten und kann die in der Klasse definierten **methoden** nutzen.
+
+Ein zentrales Element ist der **__init__**-Konstruktor. Er wird automatisch ausgefuehrt, wenn ein Objekt erstellt wird, und dient zur Initialisierung der **attribute**. Der **self**-Parameter verweist dabei auf das aktuelle Objekt und ist notwendig, um innerhalb der Klasse auf die **attribute** und **methoden** zuzugreifen. Ohne **self** koennen innerhalb einer Methode keine objektbezogenen Daten verwendet werden.
+
+
 
 
 
