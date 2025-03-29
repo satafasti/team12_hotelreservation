@@ -254,14 +254,12 @@ except
 # Zusammenfassung Unterrichtseinheit 2 Iteration 1
 
 In dieser Unterrichtseinheit haben wir uns mit den Grundlagen von Object Oriented Programming (OOP) beschaeftigt. Wir haben gelernt, dass eine **class** ein Bauplan ist, in dem festgelegt wird, welche **attribute** (z. B. name, age, city) und **methoden** (z. B. eat(), sleep(), play()) ein Objekt besitzen soll. Eine **class** selbst fuehrt noch keinen Code aus, sondern dient als Vorlage fuer die Erstellung von **objects**. Ein **object** ist eine konkrete Instanz einer **class** mit eigenen Werten und kann die in der Klasse definierten **methoden** nutzen.
-
 Ein zentrales Element ist der **__init__**-Konstruktor. Er wird automatisch ausgefuehrt, wenn ein Objekt erstellt wird, und dient zur Initialisierung der **attribute**. Der **self**-Parameter verweist dabei auf das aktuelle Objekt und ist notwendig, um innerhalb der Klasse auf die **attribute** und **methoden** zuzugreifen. Ohne **self** koennen innerhalb einer Methode keine objektbezogenen Daten verwendet werden.
 
+# Zusammenfassung Unterrichtseinheit 2 Iteration 2
 
-
-
-
-
+Der Schwerpunkt dieser Unterrichtseinheit lag auf Encapsulation, Data Hiding und Private/Public Attributes. So können Attribute als "privat" oder "public" definiert werden. Ist ein Attribut "privat" ist es ausserhalb der Klasse nicht direkt zugänglich für einen Client. In Python wird ein privates Attribut durch zwei Unterstriche "__" vor dem Attributnamen definiert. Wenn Attribute einer Klasse als privat definiert sind, müssen Methoden zum Abrufen oder Ändern des Attributwerts integriert werden. Mit dem Befehl "self." können die Attribute innerhalb der Klasse abgefragt werden. Solche Methoden heissen Getter- und Setter-Methoden. In Python werden sie mit @property (Getter) und @nameDerEigenschaft.setter geschrieben oder alternativ mit get_nameDerEigenschaft() und set_nameDerEigenschaft(). Verfügt eine Klasse über eine konstante Variable, kann diese in Grossbuchstaben an erster Stelle geschrieben werden (class Track: MIN_PRICE = 2.99). 
+In unserem Projekt haben wird die voraussichtlich benötigten Klassen erstellt und uns überlegt, welche Aktionen diese benötige. Dabei haben wir darüber diskutiert, welche unserer Klassen "privat", welche "public" sein sollten. Aus unserer Sicht macht es Sinn, wenn alle Klassen "privat" sind, da keine der Klassen direkt geändert werden sollten. In einem kurzen Austausch bestätigte uns Charuta, dass wir grundsätzlich alle Klassen "privat" machen können. Wir haben uns dazu entschieden allen Klassen eine Getter- und Setter-Funktion zu geben. Ein weiterer Diskussionspunkt war die Adresse. In der Datenbank sind Strasse, PLZ und Ort als eigenständige Felder vorhanden. Wir haben uns aber überlegt, eine Funktion zu machen wo alle Felder direkt abgefragt werden. Ähnlich dem Bespiel def get_track_details(self): return f"Title: {self.title}, Price: {self.__price:.2f}.
 
 
 
