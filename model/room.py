@@ -19,10 +19,13 @@ class Room:
     def room_id(self,new_room_id):
         self.__room_id = new_room_id
 
+### id brauchen kein setter da autoincrementation von sql
+
     @room_id.deleter
     def room_id(self):
         del self.__room_id    
 
+### braucht es diese funktion
 
     @property
     def room_no(self):

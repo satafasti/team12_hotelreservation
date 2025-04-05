@@ -26,7 +26,7 @@ class Hotel
         self.__stars == new_stars
     else:
         print("Stars must be a number between 1 and 5.")
-
+###indent?
 
     
     

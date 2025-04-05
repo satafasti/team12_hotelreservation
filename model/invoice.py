@@ -19,6 +19,8 @@ class Invoice:
     @property
     def issue_date(self) -> str:
         return self.__issue_date
+        
+### @issue_date.setter
 
     @property
     def total_amount(self) -> float:
@@ -33,7 +35,7 @@ class Invoice:
     @property
     def booking_id(self) -> int:
         return self.__booking_id
-
+#
 
 ### Diskussion:  Total amount habe ich einmal im Invoice und im Booking, 
 ###weil eine Rechung kann mehrere Buchungen haben und eine Buchung auch 
