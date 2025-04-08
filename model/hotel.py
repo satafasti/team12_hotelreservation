@@ -22,15 +22,23 @@ class Hotel
 
     @stars.setter
     def set_stars(self, new_stars)
-    if new_stars > 0 and new_stars <= 5
-        self.__stars == new_stars
-    else:
-        print("Stars must be a number between 1 and 5.")
-###indent?
+        if new_stars > 0 and new_stars <= 5
+            self.__stars == new_stars
+        else:
+            print("Stars must be a number between 1 and 5.")
 
-    
-    
-    
-    
-    @@@@@@
-    
+
+    def get_hotel_details(self)
+        return f"Hotel name: {self.__name}, Stars: {self.__stars}
+
+
+
+
+
+
+
+
+
+
+
+

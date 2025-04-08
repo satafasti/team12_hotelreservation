@@ -17,6 +17,7 @@ class Booking:
         self.__total_amount = total_amount
         self.__guest_id = guest_id
         self.__room_id = room_id
+        self.__invoice = None  # ← Verknüpfung zur Invoice
 
     @property
     def booking_id(self) -> int:
@@ -58,3 +59,10 @@ class Booking:
     def room_id(self) -> int:
         return self.__room_id
 
+    @property
+    def invoice(self):
+        return self.__invoice
+
+    def assign_invoice(self, invoice: 'Invoice'):
+        self.__invoice = invoice
+        invoice.add_booking(self)
