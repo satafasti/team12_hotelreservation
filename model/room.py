@@ -6,6 +6,8 @@ class Room:
             room_no : str, #oder int?
             room_price_per_night : float,
             ):
+
+        ##sharp
     
         self.__room_id = room_id
         self.__room_no = room_no
@@ -41,6 +43,7 @@ class Room:
     @property
     def room_price_per_night(self):
         return self.__room_price_per_night
+     
 
     @room_price_per_night.setter
     def room_price_per_night(self, new_room_priece_per_night):
