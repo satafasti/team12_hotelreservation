@@ -26,6 +26,7 @@ class Room:
         del self.__room_id    
 
 ### braucht es diese funktion
+#### test
 
     @property
     def room_no(self):
@@ -34,6 +35,7 @@ class Room:
     @room_no.setter
     def room_no(self,new_room_no):
         self.__room_no = new_room_no
+
 
 
     @property
