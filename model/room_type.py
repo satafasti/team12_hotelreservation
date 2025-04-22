@@ -39,5 +39,5 @@ class Room_type:
 
     @max_guests.setter
     def max_guests(self, new_max_guests):
-        self.__max_guests = max_guests
+        self.__max_guests = new_max_guests
         

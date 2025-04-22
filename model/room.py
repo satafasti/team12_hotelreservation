@@ -3,15 +3,17 @@ class Room:
     def __init__(
             self,
             room_id : int,
-            room_no : str, #oder int?
+            room_number : int,
             room_price_per_night : float,
+            type_id : int, #ist in SQL enthalten
             ):
 
         ##sharp
     
         self.__room_id = room_id
-        self.__room_no = room_no
+        self.__room_number = room_number
         self.__room_price_per_night = room_price_per_night
+        self.__type_id = type_id
 
     @property
     def room_id(self):
@@ -31,12 +33,12 @@ class Room:
 #### test
 
     @property
-    def room_no(self):
-        return self.__room_no
+    def room_number(self):
+        return self.__room_number
 
-    @room_no.setter
-    def room_no(self,new_room_no):
-        self.__room_no = new_room_no
+    @room_number.setter
+    def room_number(self,new_room_number):
+        self.__room_number = new_room_number
 
 
 
