@@ -1,15 +1,14 @@
-## Referenzprojekt Code:
-#from __future__ import annotations
-#from typing import TYPE_CHECKING
+from __future__ import annotations
+#from typing import TYPE_CHECKING #Referenzprojekt
 import model.room_type
+import model.facilities
 
 
-#if TYPE_CHECKING:
-    #from model.artist import Artist
-    #from model.track import Track
+#if TYPE_CHECKING: #Referenzprojekt
+    #from model.artist import Artist #Referenzprojekt
+    #from model.track import Track #Referenzprojekt
 
 class Room:
-
     def __init__(self, room_id : int, room_number : int, price_per_night : float,  description: model.room_type, ): #ID ist in SQL enthalten?
         self.__room_id = room_id
         self.__room_number = room_number
