@@ -44,8 +44,7 @@ class Hotel:
             print("Stars must be a number between 1 and 5.")
 
 
-    def get_hotel_details(self):
-        return f"Hotel name: {self.__name}, Stars: {self.__stars}"
+
 
 
 
