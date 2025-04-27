@@ -1,6 +1,8 @@
 ## Referenzprojekt Code:
 #from __future__ import annotations
 #from typing import TYPE_CHECKING
+import model.room_type
+
 
 #if TYPE_CHECKING:
     #from model.artist import Artist
@@ -8,11 +10,12 @@
 
 class Room:
 
-    def __init__(self, room_id : int, room_number : int, price_per_night : float, type_id : int): #ID ist in SQL enthalten
+    def __init__(self, room_id : int, room_number : int, price_per_night : float,  description: model.room_type, ): #ID ist in SQL enthalten?
         self.__room_id = room_id
         self.__room_number = room_number
         self.__price_per_night = price_per_night
-        self.__type_id = type_id
+        self.__description = description #Description von Class room_type soll übergeben werden
+        self.__facility_name = [] #Liste für Facilities des Raumes
 
     @property
     def room_id(self):
@@ -22,11 +25,7 @@ class Room:
     #def room_id(self,new_room_id):
         #self.__room_id = new_room_id
 
-    ### braucht es diese funktion
-    @room_id.deleter
-    def room_id(self):
-        del self.__room_id
-
+#room_number
     @property
     def room_number(self):
         return self.__room_number
@@ -35,6 +34,12 @@ class Room:
     def room_number(self,new_room_number):
         self.__room_number = new_room_number
 
+#id_deleter
+    @room_id.deleter
+    def room_id(self):
+        del self.__room_id
+
+#price per night
     @property
     def price_per_night(self):
         return self.__price_per_night
@@ -42,3 +47,23 @@ class Room:
     @price_per_night.setter
     def price_per_night(self, new_price_per_night):
         self.__price_per_night = new_price_per_night
+
+
+#description
+    @property
+    def description(self):
+        return self.__description
+
+    @description.setter
+    def description(self,new_description):
+        self.__description = new_description
+
+
+#facility_name
+    @property
+    def facility_name(self):
+        return self.__facility_name
+
+    @facility_name.setter
+    def facility_name(self,new_facility_name):
+        self.__facility_name = new_facility_name

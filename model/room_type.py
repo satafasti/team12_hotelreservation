@@ -1,23 +1,17 @@
 class Room_Type:
 
-    def __init__(
-            self,
-            type_id : int,
-            description : str, 
-            max_guests : int,
-            ):
-    
+    def __init__(self, type_id : int, description : str, max_guests : int):
         self.__type_id = type_id
-        self.__description = description
+        self.__description = description #z.B. Einzelzimmer
         self.__max_guests = max_guests
 
     @property
     def type_id(self):
         return self.__type_id
 
-    @room_type_id.setter
-    def type_id(self,new_type_id):
-        self.__type_id = new_type_id
+    #@room_type_id.setter => Da Autoincrementation von SQL
+    #def type_id(self,new_type_id):
+        #self.__type_id = new_type_id
 
     @type_id.deleter
     def type_id(self):
