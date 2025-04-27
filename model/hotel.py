@@ -1,5 +1,5 @@
 class Hotel:
-    def __init__ (self, hotel_id:int, name:str, stars:int):
+    def __init__ (self, hotel_id:int, name:str, stars:int, address:str):
         if not hotel_id:
             raise ValueError("hotel_id must be set")
         if not isinstance(hotel_id , int):
@@ -8,11 +8,16 @@ class Hotel:
             raise ValueError("name must be set")
         if not isinstance(name , str):
             raise TypeError("name must be a string")
+        if not address:
+            raise ValueError("address must be set")
+        if not isinstance(address, str):
+            raise TypeError("address must be a string")
 
         self.__hotel_id = hotel_id
         self.__name = name
         self.__stars = stars
-        self.__rooms =[]
+        self.__rooms = []
+        self.__address = address  #single instance of class Address, as of now no backwards link from address -> hotel necessary, to find all hotels in a city loop through existing instances by city
 
     @property    
     def name(self):
