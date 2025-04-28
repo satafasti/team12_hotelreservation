@@ -10,6 +10,19 @@ import model.facilities
 
 class Room:
     def __init__(self, room_id : int, room_number : int, price_per_night : float,  description: model.room_type, ): #ID ist in SQL enthalten?
+        if not room_id:
+            raise ValueError("room_id must be set")
+        if not isinstance(room_id, int):
+            raise TypeError("room_id must be a int")
+        if not room_number:
+            raise ValueError("room_number must be set")
+        if not isinstance(room_id, int):
+            raise TypeError("room_number must be a int")
+        if not price_per_night:
+            raise ValueError("price_per_night must be set")
+        if not isinstance(price_per_night, float):
+            raise TypeError("price_per_night must be a float")
+
         self.__room_id = room_id
         self.__room_number = room_number
         self.__price_per_night = price_per_night
