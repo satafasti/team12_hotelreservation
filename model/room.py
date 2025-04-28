@@ -1,50 +1,68 @@
+from __future__ import annotations
+#from typing import TYPE_CHECKING #Referenzprojekt
+import model.room_type
+import model.facilities
+
+
+#if TYPE_CHECKING: #Referenzprojekt
+    #from model.artist import Artist #Referenzprojekt
+    #from model.track import Track #Referenzprojekt
+
 class Room:
-
-    def __init__(
-            self,
-            room_id : int,
-            room_no : str, #oder int?
-            room_price_per_night : float,
-            ):
-
-        ##sharp
-    
+    def __init__(self, room_id : int, room_number : int, price_per_night : float,  description: model.room_type, ): #ID ist in SQL enthalten?
         self.__room_id = room_id
-        self.__room_no = room_no
-        self.__room_price_per_night = room_price_per_night
+        self.__room_number = room_number
+        self.__price_per_night = price_per_night
+        self.__description = description #Description von Class room_type soll übergeben werden
+        self.__facility_name = [] #Liste für Facilities des Raumes
 
     @property
     def room_id(self):
         return self.__room_id
 
-    @room_id.setter
-    def room_id(self,new_room_id):
-        self.__room_id = new_room_id
+    #@room_id.setter => Da Autoincrementation von SQL
+    #def room_id(self,new_room_id):
+        #self.__room_id = new_room_id
 
-### id brauchen kein setter da autoincrementation von sql
+#room_number
+    @property
+    def room_number(self):
+        return self.__room_number
 
+    @room_number.setter
+    def room_number(self,new_room_number):
+        self.__room_number = new_room_number
+
+#id_deleter
     @room_id.deleter
     def room_id(self):
-        del self.__room_id    
+        del self.__room_id
 
-### braucht es diese funktion
-#### test
-
+#price per night
     @property
-    def room_no(self):
-        return self.__room_no
+    def price_per_night(self):
+        return self.__price_per_night
 
-    @room_no.setter
-    def room_no(self,new_room_no):
-        self.__room_no = new_room_no
+    @price_per_night.setter
+    def price_per_night(self, new_price_per_night):
+        self.__price_per_night = new_price_per_night
 
 
-
+#description
     @property
-    def room_price_per_night(self):
-        return self.__room_price_per_night
-     
+    def description(self):
+        return self.__description
 
-    @room_price_per_night.setter
-    def room_price_per_night(self, new_room_priece_per_night):
-        self.__room_price_per_night = new_room_priece_per_night
+    @description.setter
+    def description(self,new_description):
+        self.__description = new_description
+
+
+#facility_name
+    @property
+    def facility_name(self):
+        return self.__facility_name
+
+    @facility_name.setter
+    def facility_name(self,new_facility_name):
+        self.__facility_name = new_facility_name

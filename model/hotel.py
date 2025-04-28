@@ -1,35 +1,55 @@
-class Hotel
-    def __init__ (self, hotel_id:str, name:str, stars:float)
+class Hotel:
+    def __init__ (self, hotel_id:int, name:str, stars:int, address:str):
+        if not hotel_id:
+            raise ValueError("hotel_id must be set")
+        if not isinstance(hotel_id , int):
+            raise TypeError("hotel_id must be a int")
+        if not name:
+            raise ValueError("name must be set")
+        if not isinstance(name , str):
+            raise TypeError("name must be a string")
+        if not address:
+            raise ValueError("address must be set")
+        if not isinstance(address, str):
+            raise TypeError("address must be a string")
+
         self.__hotel_id = hotel_id
         self.__name = name
         self.__stars = stars
+        self.__rooms = []
+        self.__address = address  #single instance of class Address, as of now no backwards link from address -> hotel necessary, to find all hotels in a city loop through existing instances by city
 
     @property    
     def name(self):
         return self.__name
 
     @name.setter
-    def set_name(self, new_name)
+    def set_name(self, new_name):
+        if not new_name:
+            raise ValueError("name must be set")
+        if not isinstance(new_name, str):
+            raise TypeError("name must be a string")
         self.__name == new_name
 
     @property
-    def hotel_id(self)
+    def hotel_id(self):
         return self.__hotel_id
     
     @property
-    def stars(self)
+    def stars(self):
         return self.__stars
 
     @stars.setter
-    def set_stars(self, new_stars)
-        if new_stars > 0 and new_stars <= 5
+    def set_stars(self, new_stars):
+        if not isinstance(new_stars, int):
+            raise TypeError("new_stars must be a int")
+        elif new_stars > 0 and new_stars <= 5:
             self.__stars == new_stars
         else:
             print("Stars must be a number between 1 and 5.")
 
 
-    def get_hotel_details(self)
-        return f"Hotel name: {self.__name}, Stars: {self.__stars}
+
 
 
 
