@@ -32,7 +32,9 @@ class Booking:
         self.__total_amount = total_amount
         self.__guest_id = guest_id
         self.__room_id = room_id
-        self.__invoice = None  # ← Verknüpfung zur Invoice
+        self.__invoice = None
+        self.__guest = None
+        self.__room = None
 
     @property
     def booking_id(self) -> int:
@@ -78,9 +80,18 @@ class Booking:
     def invoice(self):
         return self.__invoice
 
-    def assign_invoice(self, invoice: 'Invoice'):
+    def add_invoice(self, invoice: 'Invoice'):
         if not isinstance(invoice, Invoice):
             raise TypeError("invoice must be an instance of Invoice")
         self.__invoice = invoice
         invoice.add_booking(self)
-        invoice.add_booking(self)
+
+    def add_guest(self, guest: 'Guest'):
+        if not isinstance(guest, Guest):
+            raise TypeError("guest must be an instance of Guest")
+        self.__guest = guest
+
+    def add_room(self, room: 'Room'):
+        if not isinstance(room, Room):
+            raise TypeError("room must be an instance of Room")
+        self.__room = room
