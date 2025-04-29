@@ -1,12 +1,17 @@
 # Importiere alle Modelle
-from models.address import Address
-from models.booking import Booking
-from models.facilities import Facilities
-from models.guest import Guest
-from models.hotel import Hotel
-from models.invoice import Invoice
-from models.room import Room
-from models.room_type import Room_Type
+import sys
+import os
+sys.path.append(os.path.abspath('.'))
+
+from business_logic.booking_manager import book_room_in_hotel
+from model.address import Address
+from model.booking import Booking
+from model.facilities import Facilities
+from model.guest import Guest
+from model.hotel import Hotel
+from model.invoice import Invoice
+from model.room import Room
+from model.room_type import Room_Type
 
 # Testdaten anlegen
 
@@ -64,11 +69,5 @@ guests = [guest1, guest2]
 bookings = [booking1, booking2]
 invoices = [invoice1, invoice2]
 
-def show_all_hotels(hotels):
-    print("🏨 Verfügbare Hotels:")
-    for hotel in hotels:
-        print(f"- {hotel.name}, {hotel.address.street}, {hotel.address.city} ({hotel.stars} Sterne)")
 
 
-if __name__ == "__main__":
-    show_all_hotels(hotels)
