@@ -14,7 +14,7 @@ class HotelManager:
         self.__rooms.append(room)
 
     def show_room_details(self):
-        print(f"Hotel name: {self.__name}, Stars: {self.__stars}"
+        print(f"Hotel name: {self.__name}, {self.__stars} Stars"
         for room in self.__rooms:
             print(room.get_room_details())
 
