@@ -10,6 +10,21 @@ class Booking:
         guest_id: int,
         room_id: int
     ):
+        if booking_id <= 0:
+            raise ValueError("booking_id must be a positive integer")
+        if not check_in_date:
+            raise ValueError("check_in_date must not be empty")
+        if not check_out_date:
+            raise ValueError("check_out_date must not be empty")
+        if total_amount < 0:
+            raise ValueError("total_amount must be non-negative")
+        if guest_id <= 0:
+            raise ValueError("guest_id must be a positive integer")
+        if room_id <= 0:
+            raise ValueError("room_id must be a positive integer")
+        if not isinstance(is_cancelled, bool):
+            raise TypeError("is_cancelled must be a boolean")
+
         self.__booking_id = booking_id
         self.__check_in_date = check_in_date
         self.__check_out_date = check_out_date
@@ -64,5 +79,8 @@ class Booking:
         return self.__invoice
 
     def assign_invoice(self, invoice: 'Invoice'):
+        if not isinstance(invoice, Invoice):
+            raise TypeError("invoice must be an instance of Invoice")
         self.__invoice = invoice
+        invoice.add_booking(self)
         invoice.add_booking(self)
