@@ -1,17 +1,24 @@
-# Importiere alle Modelle
-import sys
-import os
-sys.path.append(os.path.abspath('.'))
+import sys, os
+sys.path.append(os.path.abspath('..'))
 
-from business_logic.booking_manager import book_room_in_hotel
-from model.address import Address
-from model.booking import Booking
-from model.facilities import Facilities
-from model.guest import Guest
 from model.hotel import Hotel
-from model.invoice import Invoice
+from business_logic.booking_manager import book_room_in_hotel
+
+def test_booking():
+    # hier dein Code zur Buchung
+    ...
+
+from model.address import Address
+from model.hotel import Hotel
 from model.room import Room
 from model.room_type import Room_Type
+from model.guest import Guest
+from model.booking import Booking
+from model.invoice import Invoice
+from .model.facilities import Facilities
+
+from business_logic.booking_manager import book_room_in_hotel
+
 
 # Testdaten anlegen
 

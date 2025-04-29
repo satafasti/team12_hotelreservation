@@ -35,6 +35,10 @@ class RoomManager:
             room.facility_name = self
 
 
+def show_room_facilities(rooms):
+    print("Zimmerausstattung:")
+    for r in rooms:
+        print(f" - Zimmer {r.room_number}: {', '.join(r.facility_name)}")
 
 
 
