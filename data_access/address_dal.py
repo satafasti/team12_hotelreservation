@@ -14,17 +14,17 @@ class AddressDAL(BaseDal):
         params = (address.address_id,)
         result = self.fetchone(sql, params)
         if result:
-            address_id, street, city, country, postal_code = result
-            return model.Address(address_id, street, city, country, postal_code)
+            address_id, street, city, zip_code = result
+            return model.Address(address_id, street, city, zip_code)
         else:
             return None
 
 
     def update_address(self, address: model.Address):
         sql = """
-        UPDATE Address SET street = ?, city = ?, postal_code = ? WHERE address_id = ?
+        UPDATE Address SET street = ?, city = ?, zip_code = ? WHERE address_id = ?
         """
-        params = (address.street, address.city, address.postal_code, address.address_id)
+        params = (address.street, address.city, address.zip_code, address.address_id)
         self.execute(sql, params)
 
     def delete_address(self, address: model.Address):
@@ -36,7 +36,7 @@ class AddressDAL(BaseDal):
 
     def create_address(self, address: model.Address):
         sql = """
-        INSERT INTO Address (street, city, country, postal_code) VALUES (?, ?, ?, ?)
+        INSERT INTO Address (street, city, zip_code) VALUES (?, ?, ?)
         """
-        params = (address.street, address.city, address.country, address.postal_code)
+        params = (address.street, address.city, address.zip_code)
         self.execute(sql, params)
