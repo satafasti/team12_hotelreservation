@@ -47,7 +47,7 @@ class Room:
         self.__room_number = new_room_number
 
 #id_deleter
-    @room_id.deleter
+    @room_id.deleter #anschauen
     def room_id(self):
         del self.__room_id
 

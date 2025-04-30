@@ -2,7 +2,7 @@ class Facilities:
 
     def __init__(
             self,
-            facitlity_id : int, #Schreibfehler
+            facitlity_id : int,
             facility_name : str,
             ):
     
@@ -10,7 +10,7 @@ class Facilities:
         self.__facility_name : str = facility_name
 
     @property
-    def facitlity_id(self) -> int: #Schreibfehler
+    def facitlity_id(self) -> int:
         return self.__facility_id
 
 

@@ -26,7 +26,7 @@ class Room_Type:
     #def type_id(self,new_type_id):
         #self.__type_id = new_type_id
 
-    @type_id.deleter
+    @type_id.deleter #anschauen
     def type_id(self):
         del self.__type_id
 
