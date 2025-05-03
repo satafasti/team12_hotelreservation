@@ -1,4 +1,5 @@
 import data_access
+from model import Room, room
 from model.hotel import Hotel
 
 class HotelManager:
@@ -13,8 +14,19 @@ class HotelManager:
         room = Room(room_id, room_number, price_per_night, type_id)
         self.__rooms.append(room)
 
+    def remove_room(self, room: Room) -> None:
+        from model import Room
+
+        if not room:
+            raise   ValueError ("room cannot be None")
+        if not isinstance(room, Room):
+            raise ValueError ("room must be an instance of Room")
+        if room in self.__rooms:
+            self.__rooms.remove(room)
+
+
     def show_room_details(self):
-        print(f"Hotel name: {self.__name}, {self.__stars} Stars"
+        print(f"Hotel name: {self.__name}, {self.__stars} Stars")
         for room in self.__rooms:
             print(room.get_room_details())
 

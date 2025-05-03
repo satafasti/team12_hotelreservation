@@ -24,12 +24,12 @@ class Hotel:
         return self.__name
 
     @name.setter
-    def set_name(self, new_name):
+    def name(self, new_name):
         if not new_name:
             raise ValueError("name must be set")
         if not isinstance(new_name, str):
             raise TypeError("name must be a string")
-        self.__name == new_name
+        self.__name = new_name
 
     @property
     def hotel_id(self):
@@ -40,13 +40,17 @@ class Hotel:
         return self.__stars
 
     @stars.setter
-    def set_stars(self, new_stars):
+    def stars(self, new_stars):
         if not isinstance(new_stars, int):
-            raise TypeError("new_stars must be a int")
+            raise TypeError("new_stars must be a integer")
         elif new_stars > 0 and new_stars <= 5:
             self.__stars == new_stars
         else:
             print("Stars must be a number between 1 and 5.")
+
+
+            #SQL noch einmal abgleichen
+            # bool - der mit dem datum verbunden ist -> mit einem for-loop über die räume iterieren und for-loop auf start und enddatum
 
 
 
