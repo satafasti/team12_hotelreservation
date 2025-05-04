@@ -1,7 +1,7 @@
 ############ Model-Layer
 #Code wurde verändert!
 class Hotel:
-    def __init__(self, hotel_id: int, name: str, stars: int, address_id: int): #address in address_id geändert, da in DB nur ID hinterlegt ist
+    def __init__(self, hotel_id: int, name: str, stars: int, address_id: int, rooms: list): #address in address_id geändert, da in DB nur ID hinterlegt ist
         if not hotel_id:
             raise ValueError("hotel_id must be set")
         if not isinstance(hotel_id, int):
@@ -14,11 +14,16 @@ class Hotel:
             raise ValueError("address must be set")
         if not isinstance(address_id, int):
             raise TypeError("address_id must be a int")
+        if not rooms or not isinstance(rooms, list):
+            raise ValueError("rooms must be a non-empty list")
+        if len(rooms) == 0:
+            raise ValueError("at least one room is required")
+
 
         self.__hotel_id = hotel_id
         self.__name = name
         self.__stars = stars
-        self.__rooms = []
+        self.__rooms = rooms
         self.__address_id = address_id #changed to address_id # single instance of class Address, as of now no backwards link from address -> hotel necessary, to find all hotels in a city loop through existing instances by city
 
     @property
@@ -58,11 +63,134 @@ class Hotel:
     def address_id(self, new_address_id):
         self.__address_id = new_address_id
 
+#Code wurde nicht verändert!
+class Room_Type:
+
+    def __init__(self, type_id : int, description : str, max_guests : int):
+        if not type_id:
+            raise ValueError("type_id must be set")
+        if not isinstance(type_id, int):
+            raise TypeError("type_id must be a int")
+        if not description:
+            raise ValueError("description must be set")
+        if not isinstance(description, str):
+            raise TypeError("description must be a str")
+        if not max_guests:
+            raise ValueError("max_guests must be set")
+        if not isinstance(max_guests, int):
+            raise TypeError("max_guests must be a int")
+
+        self.__type_id = type_id
+        self.__description = description #z.B. Einzelzimmer
+        self.__max_guests = max_guests
+
+    @property
+    def type_id(self):
+        return self.__type_id
+
+
+    #@room_type_id.setter => Da Autoincrementation von SQL
+    #def type_id(self,new_type_id):
+        #self.__type_id = new_type_id
+
+    #@type_id.deleter #anschauen wie korrekt gemacht wird
+    #def type_id(self):
+        #del self.__type_id
+
+    @property
+    def description(self):
+        return self.__description
+
+    @description.setter
+    def description(self, new_description):
+        self.__description = new_description
+
+    @property
+    def max_guests(self):
+        return self.__max_guests
+
+    @max_guests.setter
+    def max_guests(self, new_max_guests):
+        self.__max_guests = new_max_guests
+
+#Code wurde verändert!
+class Room:
+    def __init__(self, room_id : int, room_number : int, price_per_night : float, description: Room_Type): #ID ist in SQL enthalten?
+        if not room_id:
+            raise ValueError("room_id must be set")
+        if not isinstance(room_id, int):
+            raise TypeError("room_id must be a int")
+        if not room_number:
+            raise ValueError("room_number must be set")
+        if not isinstance(room_id, int):
+            raise TypeError("room_number must be a int")
+        if not price_per_night:
+            raise ValueError("price_per_night must be set")
+        if not isinstance(price_per_night, float):
+            raise TypeError("price_per_night must be a float")
+
+        self.__room_id = room_id
+        self.__room_number = room_number
+        self.__price_per_night = price_per_night
+        self.__description = Room_Type.description #Description von Class room_type soll übergeben werden
+        self.__facility_name = [] #Liste für Facilities des Raumes
+
+    @property
+    def room_id(self):
+        return self.__room_id
+
+    #@room_id.setter => Da Autoincrementation von SQL
+    #def room_id(self,new_room_id):
+        #self.__room_id = new_room_id
+
+#room_number
+    @property
+    def room_number(self):
+        return self.__room_number
+
+    @room_number.setter
+    def room_number(self,new_room_number):
+        self.__room_number = new_room_number
+
+#id_deleter
+    #@room_id.deleter #anschauen
+    #def room_id(self):
+        #del self.__room_id
+
+#price per night
+    @property
+    def price_per_night(self):
+        return self.__price_per_night
+
+    @price_per_night.setter
+    def price_per_night(self, new_price_per_night):
+        self.__price_per_night = new_price_per_night
+
+#description
+    @property
+    def description(self):
+        return self.__description
+
+    @description.setter
+    def description(self,new_description):
+        self.__description = new_description
+
+#facility_name
+    @property
+    def facility_name(self):
+        return self.__facility_name
+
+    @facility_name.setter
+    def facility_name(self,new_facility_name):
+        self.__facility_name = new_facility_name
+
+
 ############ Logic-Layer
 
 ### User-Story 3.1 Als Admin möchte ich neue Hotels zum System hinzufügen.
 
-def create_hotel(): # müsste man wohl noch mit der Class Hotel kombinieren.
+def create_hotel():
+    rooms = []
     ### Angaben für Hoteladresse
     create_new_address = {}
     address_id = input("Enter Address ID: ") #new address_id falls benötigt
@@ -103,16 +231,61 @@ def create_hotel(): # müsste man wohl noch mit der Class Hotel kombinieren.
         raise TypeError("stars must be an integer")
     create_new_hotel["stars"] = int(stars)
 
-    # Neues Hotel-Objekt erstellen
+    #Angaben zum Raum
+    while True:
+        create_new_room = {}
+        room_id = input("Enter room ID: ") #new room_id
+        if not room_id:
+            raise ValueError("room_id must be set")
+        if not room_id.isdigit():
+            raise TypeError("room_id must be an integer")
+        create_new_room["room_id"] = int(room_id)
+        room_number = input("Enter room number: ")
+        if not room_number:
+            raise ValueError("room_number must be set")
+        if not room_number.isdigit():
+            raise TypeError("room_number must be an integer")
+        create_new_room["room_number"] = int(room_number)
+        price_per_night = input("Enter price per night for the room: ")
+        if not price_per_night:
+            raise ValueError("price_per_night must be set")
+        try:
+            create_new_room["price_per_night"] = float(price_per_night)
+        except ValueError:
+            raise ValueError("price_per_night must be a float")
+        description = input("Enter room type description: ")
+        max_guests = input("Enter max guests: ")
+        if not max_guests.isdigit():
+            raise TypeError("max_guests must be an integer")
+
+        room_type = Room_Type(
+            type_id=create_new_room["room_id"],
+            description=description,
+            max_guests=int(max_guests)
+        )
+
+        # Neues Room-Objekt erstellen
+        add_new_room = Room(
+            room_id=create_new_room["room_id"],
+            room_number=create_new_room["room_number"],
+            price_per_night=create_new_room["price_per_night"],
+            description=room_type
+        )
+        rooms.append(add_new_room)
+
+        more = input("Add another room? (y/n): ")
+        if more.lower() != 'y':
+            break
+
+        # Neues Hotel-Objekt erstellen
     add_new_hotel = Hotel(
         hotel_id=create_new_hotel["hotel_id"],
         name=create_new_hotel["name"],
         stars=create_new_hotel["stars"],
-        address_id=create_new_address["address_id"] # address_id an das Hotel übergeben
+        address_id=create_new_address["address_id"], # address_id an das Hotel übergeben
+        rooms=rooms
     )
     return create_new_hotel["hotel_id"], add_new_hotel
-
-# müsste nicht noch mind. 1 Raum hinzugefügt werden, da ohne mind. 1 Raum gibt es ja eigentlich kein Hotel?
 
 ################################################
 
