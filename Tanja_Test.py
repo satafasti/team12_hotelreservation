@@ -62,7 +62,7 @@ class Room_Type:
 
 
 class Hotel:
-    def __init__(self, hotel_id: int, name: str, stars: int, address_id):  # address in pycharm so nicht drin
+    def __init__(self, hotel_id: int, name: str, stars: int, address:Address):  # address in pycharm so nicht drin
         if not hotel_id:
             raise ValueError("hotel_id cannot be empty")
         if not isinstance(hotel_id, int):
@@ -71,14 +71,14 @@ class Hotel:
             raise ValueError("name cannot be empty")
         if not isinstance(name, str):
             raise TypeError("name must be a string")
-        # if not isinstance(address, Address):
-        # raise TypeError ("address must be an address")
+        if not isinstance(address, Address):
+            raise TypeError ("address must be an address")
 
         self.__hotel_id = hotel_id
         self.__name = name
         self.__stars = stars
         self.__rooms = []
-        self.__address = address_id
+        self.__address = address
 
     @property
     def name(self):
@@ -158,7 +158,7 @@ class Room:
 def search_hotels(city=None, stars=None, guests=None):
     results = []
 
-    for hotel_id in Hotel:
+    for hotels in Hotel: #wir haben keine Liste von Hotels, muss zwingend auf hotel_id referenziert werden?
         if city and hotel.address.city.lower() != city.lower():
             continue
         if stars and hotel.stars < stars:
@@ -177,7 +177,7 @@ def search_hotels(city=None, stars=None, guests=None):
     return results
 
 
-# Eingabe vom Nutzer
+# Eingabe vom Nutzer für Suche ohne Datum, braucht es für Suche mit Datum Booking = [] eine Liste damit dadurch iteriert werden kann? Wir haben auch für Booking keine Liste
 print("Hallo - Bitte geben Sie ihre gewünschten Suchkriterien ein. \nSie könne eine Eingabe auch leer lassen, dann wird sie für die Suche nicht beachtet")
 
 city = input("In Welche Stadt möchten Sie reisen?: ").strip()
