@@ -177,7 +177,7 @@ def search_hotels(city=None, stars=None, guests=None):
     return results
 
 
-# Eingabe vom Nutzer für Suche ohne Datum, braucht es für Suche mit Datum Booking = [] eine Liste damit dadurch iteriert werden kann? Wir haben auch für Booking keine Liste
+# Eingabe vom Nutzer für Suche  ohne Datum, braucht es für Suche mit Datum Booking = [] eine Liste damit dadurch iteriert werden kann? Wir haben auch für Booking keine Liste
 print("Hallo - Bitte geben Sie ihre gewünschten Suchkriterien ein. \nSie könne eine Eingabe auch leer lassen, dann wird sie für die Suche nicht beachtet")
 
 city = input("In Welche Stadt möchten Sie reisen?: ").strip()
