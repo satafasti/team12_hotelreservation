@@ -28,33 +28,41 @@ class Address:
         return self.__street
 
     @street.setter
-    def set_street(self, new_street : str):
+    def street(self, new_street : str):  #set_street, die methode muss gleich heissen wie der setter selbst, also street.setter muss dann street heissen und nicht set_street
         if not new_street:
             raise ValueError ("street required")
         if not isinstance(new_street , str):
              raise TypeError("street must be a string")
+        self.__street = new_street  #Referenzprojekt anschauen um die syntax zu checken, wenn wir einen neuen wert generieren müssen wir diesen am schluss noch einmal speichern
 
     @property
     def city(self) -> str:
         return self.__city
 
     @city.setter
-    def set_city(self, new_city : str):
+    def city(self, new_city : str):
         if not new_city:
             raise ValueError ("city required")
         if not isinstance(new_city , str):
              raise TypeError("city must be a string")
+        self.__city = new_city
 
     @property
     def zip_code(self) -> str:
         return self.__zip_code
 
     @zip_code.setter
-    def set_zip_code(self, new_zip_code : str):
+    def zip_code(self, new_zip_code : str):
         if not new_zip_code:
             raise ValueError ("zip_code required")
         if not isinstance(new_zip_code , str):
              raise TypeError("zip must be a string")
+        self.__zip_code = new_zip_code
+
+
+# bei 0-werten prüfen ob wir definieren können was passieren soll? es kanns ein dass ein datensatz leer ist, was passiert dann? IF NOT prüfen ob die okay sind
+
+
 
 
 
