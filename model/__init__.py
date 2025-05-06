@@ -1,9 +1,8 @@
-#from .adress_manager import
-from .booking import Booking
-from .facilities import Facilities
-from .guest import Guest
+from .address import Address
 from .hotel import Hotel
-#from .invoice_manager import
-#from .room_facilities_manager import #Benötigen wir das? ist doch nur Zwischentable in SQL?
-from .room import Room
+from .guest import Guest
 from .room_type import Room_Type
+from .room import Room
+from .booking import Booking
+from .invoice import Invoice
+from .facilities import Facilities
