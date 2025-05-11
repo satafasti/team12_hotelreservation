@@ -1,4 +1,7 @@
-def update_room_type(room_types, type_id, new_description=None, new_max_guests=None):
+# wird nicht benötigt
+
+
+"""def update_room_type(room_types, type_id, new_description=None, new_max_guests=None): => in Manager Room_Type verschieben?
     rt = next((r for r in room_types if r.type_id == type_id), None)
     if rt:
         if new_description: rt.description = new_description

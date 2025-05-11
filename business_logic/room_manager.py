@@ -23,7 +23,7 @@ class RoomManager:
             raise ValueError("Description must be a Room_Type")
         if description not in self.__description:
             self.__description.append(description)
-            room.description = self
+            room.description = self #geht nicht
 
     def add_facilities(self, room: Room, facility_name: Facilities):
         if not facility_name:

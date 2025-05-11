@@ -1,142 +1,42 @@
-from __future__ import annotations
-
 import model
-from data_access.base_dal import BaseDal
+from data_access.base_dal import Base_DAL
 
 
-class RoomDAL(BaseDal):
+class RoomDAL(Base_DAL):
     def __init__(self, db_path: str = None):
         super().__init__(db_path)
 
-    def create_new_room(self, room_id : int, room_number : int, price_per_night : float, type_id : model.room_type = None) -> model.room:
-       #sql = """
-       # INSERT INTO Room (room_id, room_number, price_per_night, type_id) VALUES (?, ?)
-        """
-        params = (
-            title,
-            artist.artist_id if artist else None,
-        )
-
-        last_row_id, row_count = self.execute(sql, params)
-        return model.Album(last_row_id, title, artist)
-
-    #def read_album_by_id(self, album_id: int) -> model.Album | None:
+    def create_room(self, room: model.Room): #room.description kommt aber von Room_Type
         sql = """
-       # SELECT AlbumId, Title FROM Album WHERE AlbumId = ?
+        INSERT INTO Room (room_id, room_number, price_per_night, description) VALUES (?, ?, ?, ?)
         """
-        params = tuple([album_id])
+        params = (room.id if room else None, room.room_number, room.price_per_night, room.description)
+        self.execute(sql, params)
+
+    def show_room_by_id(self, room: model.Room):
+        sql = """
+        SELECT * FROM Room WHERE room_id = ?
+        """
+        params = (room.room_id)
         result = self.fetchone(sql, params)
         if result:
-            album_id, title = result
-            return model.Album(album_id, title)
+            room_id, room_number, price_per_night, description = result
+            return model.Room(room_id, room_number, price_per_night, description)
         else:
             return None
 
-    #def read_albums_by_artist(self, artist: model.Artist) -> list[model.Album]:
+    def update_room(self, room: model.Room): #room.description kommt aber von Room_Type
         sql = """
-        #SELECT AlbumId, Title FROM Album WHERE ArtistId = ?
+        UPDATE Room SET room_number = ?, price_per_night = ?, description = ? WHERE room_id = ?
         """
-        if artist is None:
-            raise ValueError("Artist can not be None")
+        params = room.room_number, room.price_per_night, room.description)
+        self.execute(sql, params)
 
-        params = tuple([artist.artist_id])
-        albums = self.fetchall(sql, params)
-        return [
-            model.Album(album_id, title, artist)
-            for album_id, title in albums
-        ]
-
-
-
-
-
-
-
-### Referenzprojekt Code
-#from __future__ import annotations
-
-#import model
-#from data_access.base_dal import BaseDal
-
-#class AlbumDAL(BaseDal):
-    #def __init__(self, db_path: str = None):
-        #super().__init__(db_path)
-
-    #def create_new_album(self, title: str, artist: model.Artist = None) -> model.Album:
-        #sql = """
-       # INSERT INTO Album (Title, ArtistId) VALUES (?, ?)
-        """
-        params = (
-            title,
-            artist.artist_id if artist else None,
-        )
-
-        last_row_id, row_count = self.execute(sql, params)
-        return model.Album(last_row_id, title, artist)
-
-    #def read_album_by_id(self, album_id: int) -> model.Album | None:
+    def delete_room(self, room: model.Room):
         sql = """
-       # SELECT AlbumId, Title FROM Album WHERE AlbumId = ?
+        DELETE FROM Room WHERE room_id = ?
         """
-        params = tuple([album_id])
-        result = self.fetchone(sql, params)
-        if result:
-            album_id, title = result
-            return model.Album(album_id, title)
-        else:
-            return None
+        params = (room.room_id)
+        self.execute(sql, params)
 
-    #def read_albums_by_artist(self, artist: model.Artist) -> list[model.Album]:
-        sql = """
-        #SELECT AlbumId, Title FROM Album WHERE ArtistId = ?
-        """
-        if artist is None:
-            raise ValueError("Artist can not be None")
 
-        params = tuple([artist.artist_id])
-        albums = self.fetchall(sql, params)
-        return [
-            model.Album(album_id, title, artist)
-            for album_id, title in albums
-        ]
-#class AlbumDAL(BaseDal):
-    #def __init__(self, db_path: str = None):
-        #super().__init__(db_path)
-
-    #def create_new_album(self, title: str, artist: model.Artist = None) -> model.Album:
-        #sql = """
-       # INSERT INTO Album (Title, ArtistId) VALUES (?, ?)
-        """
-        params = (
-            title,
-            artist.artist_id if artist else None,
-        )
-
-        last_row_id, row_count = self.execute(sql, params)
-        return model.Album(last_row_id, title, artist)
-
-    #def read_album_by_id(self, album_id: int) -> model.Album | None:
-        sql = """
-       # SELECT AlbumId, Title FROM Album WHERE AlbumId = ?
-        """
-        params = tuple([album_id])
-        result = self.fetchone(sql, params)
-        if result:
-            album_id, title = result
-            return model.Album(album_id, title)
-        else:
-            return None
-
-    #def read_albums_by_artist(self, artist: model.Artist) -> list[model.Album]:
-        sql = """
-        #SELECT AlbumId, Title FROM Album WHERE ArtistId = ?
-        """
-        if artist is None:
-            raise ValueError("Artist can not be None")
-
-        params = tuple([artist.artist_id])
-        albums = self.fetchall(sql, params)
-        return [
-            model.Album(album_id, title, artist)
-            for album_id, title in albums
-        ]
