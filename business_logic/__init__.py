@@ -1,4 +1,3 @@
-from .address_manager import AddressManager
 from .booking_manager import BookingManager
 from .facilities_manager import FacilitiesManager
 from .guest_manager import GuestManager
