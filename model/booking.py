@@ -1,3 +1,6 @@
+from model import guest, room
+
+
 class Booking:
 
     def __init__(
@@ -80,18 +83,18 @@ class Booking:
     def invoice(self):
         return self.__invoice
 
-    def add_invoice(self, invoice: 'Invoice'):
-        if not isinstance(invoice, Invoice):
+    def add_invoice(self, invoice: 'invoice'):
+        if not isinstance(invoice, invoice):
             raise TypeError("invoice must be an instance of Invoice")
         self.__invoice = invoice
         invoice.add_booking(self)
 
-    def add_guest(self, guest: 'Guest'):
-        if not isinstance(guest, Guest):
+    def add_guest(self, guest: 'guest'):
+        if not isinstance(guest, guest):
             raise TypeError("guest must be an instance of Guest")
         self.__guest = guest
 
-    def add_room(self, room: 'Room'):
-        if not isinstance(room, Room):
+    def add_room(self, room: 'room'):
+        if not isinstance(room, room):
             raise TypeError("room must be an instance of Room")
         self.__room = room

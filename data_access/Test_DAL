@@ -1,0 +1,64 @@
+import unittest
+import sqlite3
+import os
+
+from data_access.booking_dal import BookingDAL
+import model
+
+class TestBookingDAL(unittest.TestCase):
+
+    def setUp(self):
+        # In-Memory-Datenbank für jeden Test
+        self.db_path = ":memory:"
+        self.dal = BookingDAL(self.db_path)
+
+        # Tabelle anlegen
+        with sqlite3.connect(self.db_path) as conn:
+            conn.execute("""
+                CREATE TABLE Booking (
+                    booking_id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    guest_id INTEGER,
+                    room_id INTEGER,
+                    check_in_date TEXT,
+                    check_out_date TEXT,
+                    is_cancelled BOOLEAN,
+                    total_amount REAL
+                )
+            """)
+
+    def test_create_and_get_booking(self):
+        booking = model.Booking(
+            booking_id=1,  # Wird von DB ignoriert
+            guest_id=100,
+            room_id=200,
+            check_in_date="2025-05-15",
+            check_out_date="2025-05-20",
+            is_cancelled=False,
+            total_amount=450.0
+        )
+        new_id = self.dal.create_booking(booking)
+
+        loaded = self.dal.get_booking_by_id(new_id)
+
+        self.assertEqual(loaded.guest_id, 100)
+        self.assertEqual(loaded.room_id, 200)
+        self.assertEqual(loaded.total_amount, 450.0)
+        self.assertFalse(loaded.is_cancelled)
+
+    def test_cancel_booking(self):
+        booking = model.Booking(1, "2025-05-10", "2025-05-15", False, 200.0, 1, 1)
+        booking_id = self.dal.create_booking(booking)
+        self.dal.cancel_booking(booking_id)
+
+        loaded = self.dal.get_booking_by_id(booking_id)
+        self.assertTrue(loaded.is_cancelled)
+
+    def test_delete_booking(self):
+        booking = model.Booking(1, "2025-06-01", "2025-06-03", False, 100.0, 2, 2)
+        booking_id = self.dal.create_booking(booking)
+        self.dal.delete_booking(booking_id)
+
+        self.assertIsNone(self.dal.get_booking_by_id(booking_id))
+
+if __name__ == '__main__':
+    unittest.main()
