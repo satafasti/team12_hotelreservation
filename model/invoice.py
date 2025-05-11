@@ -27,3 +27,4 @@ class Invoice:
 
     def get_total_amount(self) -> float:
         return sum(b.total_amount for b in self.__bookings)
+

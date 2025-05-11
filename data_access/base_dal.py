@@ -1,7 +1,7 @@
 import sqlite3
 from typing import List, Dict, Any, Optional
 
-class Base_DAL:
+class BaseDAL:
     def __init__(self, db_path: str):
         self.__dbpath = db_path
         self.__connection = None

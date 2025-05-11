@@ -1,9 +1,10 @@
 from __future__ import annotations
 
 import model
-from data_access.base_dal import BaseDal
+from data_access import BaseDAL
+from data_access.base_dal import BaseDAL
 
 
-class FacilitiesDAL(BaseDal):
+class FacilitiesDAL(BaseDAL):
     def __init__(self, db_path: str = None):
         super().__init__(db_path)
