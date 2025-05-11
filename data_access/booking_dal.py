@@ -1,11 +1,13 @@
-from data_access.base_dal import BaseDal
-import model
+from data_access.base_dal import Base_DAL
+from model.booking import Booking
+from typing import Optional, List
 
-class BookingDAL(BaseDal):
-    def __init__(self, db_path: str = None):
+class BookingDAL(Base_DAL):
+    def __init__(self, db_path: str):
         super().__init__(db_path)
 
-    def create_booking(self, booking: model.Booking):
+    def create_booking(self, booking: Booking) -> int:
+        self.connect()
         sql = """
         INSERT INTO Booking (guest_id, room_id, check_in_date, check_out_date, is_cancelled, total_amount)
         VALUES (?, ?, ?, ?, ?, ?)
@@ -18,20 +20,36 @@ class BookingDAL(BaseDal):
             int(booking.is_cancelled),
             booking.total_amount
         )
-        with self._connect() as conn:
-            cursor = conn.cursor()
-            cursor.execute(sql, params)
-            conn.commit()
-            return cursor.lastrowid
+        self.execute_query(sql, params)
+        booking_id = self.execute("SELECT last_insert_rowid()")[0][0]
+        self.disconnect()
+        return booking_id
 
-    def get_booking_by_id(self, booking_id: int):
+    def get_booking_by_id(self, booking_id: int) -> Optional[Booking]:
+        self.connect()
         sql = "SELECT * FROM Booking WHERE booking_id = ?"
-        result = self.fetchone(sql, (booking_id,))
+        result = self.fetch_one(sql, (booking_id,))
+        self.disconnect()
         if result:
-            return model.Booking(*result)
+            return Booking(*result)
         return None
 
-    def update_booking(self, booking: model.Booking):
+    def get_all_bookings(self) -> List[Booking]:
+        self.connect()
+        sql = "SELECT * FROM Booking"
+        results = self.fetch_all(sql)
+        self.disconnect()
+        return [Booking(*row) for row in results]
+
+    def get_bookings_by_guest(self, guest_id: int) -> List[Booking]:
+        self.connect()
+        sql = "SELECT * FROM Booking WHERE guest_id = ?"
+        results = self.fetch_all(sql, (guest_id,))
+        self.disconnect()
+        return [Booking(*row) for row in results]
+
+    def update_booking(self, booking: Booking):
+        self.connect()
         sql = """
         UPDATE Booking
         SET guest_id = ?, room_id = ?, check_in_date = ?, check_out_date = ?, is_cancelled = ?, total_amount = ?
@@ -46,22 +64,17 @@ class BookingDAL(BaseDal):
             booking.total_amount,
             booking.booking_id
         )
-        self.execute(sql, params)
-
-    def delete_booking(self, booking_id: int):
-        sql = "DELETE FROM Booking WHERE booking_id = ?"
-        self.execute(sql, (booking_id,))
-
-    def get_all_bookings(self):
-        sql = "SELECT * FROM Booking"
-        results = self.fetchall(sql)
-        return [model.Booking(*row) for row in results]
-
-    def get_bookings_by_guest_id(self, guest_id: int):
-        sql = "SELECT * FROM Booking WHERE guest_id = ?"
-        results = self.fetchall(sql, (guest_id,))
-        return [model.Booking(*row) for row in results]
+        self.execute_query(sql, params)
+        self.disconnect()
 
     def cancel_booking(self, booking_id: int):
+        self.connect()
         sql = "UPDATE Booking SET is_cancelled = 1 WHERE booking_id = ?"
-        self.execute(sql, (booking_id,))
+        self.execute_query(sql, (booking_id,))
+        self.disconnect()
+
+    def delete_booking(self, booking_id: int):
+        self.connect()
+        sql = "DELETE FROM Booking WHERE booking_id = ?"
+        self.execute_query(sql, (booking_id,))
+        self.disconnect()
