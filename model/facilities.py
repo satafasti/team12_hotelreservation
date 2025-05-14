@@ -2,7 +2,7 @@ class Facilities:
 
     def __init__(
             self,
-            facitlity_id : int, #Schreibfehler
+            facility_id : int, #Schreibfehler
             facility_name : str,
             ):
     
