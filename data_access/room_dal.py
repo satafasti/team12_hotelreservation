@@ -17,7 +17,7 @@ class RoomDAL(Base_DAL):
         sql = """
         SELECT * FROM Room WHERE room_id = ?
         """
-        params = (room.room_id)
+        params = (room.room_id,)
         result = self.fetch_one(sql, params)
         if result:
             room_id, room_number, price_per_night, description = result
