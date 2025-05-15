@@ -10,7 +10,7 @@ class RoomDAL(Base_DAL):
         sql = """
         INSERT INTO Room (room_id, room_number, price_per_night, description) VALUES (?, ?, ?, ?)
         """
-        params = (room.id if room else None, room.room_number, room.price_per_night, room.description)
+        params = (room.room_id if room else None, room.room_number, room.price_per_night, room.description)
         self.execute(sql, params)
 
     def show_room_by_id(self, room: model.Room):
@@ -18,7 +18,7 @@ class RoomDAL(Base_DAL):
         SELECT * FROM Room WHERE room_id = ?
         """
         params = (room.room_id)
-        result = self.fetchone(sql, params)
+        result = self.fetch_one(sql, params)
         if result:
             room_id, room_number, price_per_night, description = result
             return model.Room(room_id, room_number, price_per_night, description)
@@ -29,14 +29,14 @@ class RoomDAL(Base_DAL):
         sql = """
         UPDATE Room SET room_number = ?, price_per_night = ?, description = ? WHERE room_id = ?
         """
-        params = room.room_number, room.price_per_night, room.description)
+        params = (room.room_number, room.price_per_night, room.description)
         self.execute(sql, params)
 
     def delete_room(self, room: model.Room):
         sql = """
         DELETE FROM Room WHERE room_id = ?
         """
-        params = (room.room_id)
+        params = (room.room_id,)
         self.execute(sql, params)
 
 

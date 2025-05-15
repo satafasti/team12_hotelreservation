@@ -9,7 +9,7 @@ import model.facilities
     #from model.track import Track #Referenzprojekt
 
 class Room:
-    def __init__(self, room_id : int, room_number : int, price_per_night : float,  description: model.room_type, ): #ID ist in SQL enthalten?
+    def __init__(self, room_id : int, room_number : int, price_per_night : float,  description: model.room_type): #ID ist in SQL enthalten?
         if not room_id:
             raise ValueError("room_id must be set")
         if not isinstance(room_id, int):
