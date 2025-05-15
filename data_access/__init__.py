@@ -10,7 +10,7 @@ from .hotel_dal import HotelDAL
 from .invoice_dal import InvoiceDAL
 from .room_dal import RoomDAL
 from .room_type_dal import RoomTypeDAL
-#from .room_facilities_dal import RoomFacilitiesDAL => wird nicht benötigt
+from .room_facilities_dal import RoomFacilitiesDAL
 
 # Adapter: Wandelt `date`-Objekt in `TEXT` um
 sqlite3.register_adapter(date, lambda d: d.isoformat())
