@@ -2,6 +2,7 @@ from __future__ import annotations
 #from typing import TYPE_CHECKING #Referenzprojekt
 import model.room_type
 import model.facilities
+#from Sarina_Test import Room_Type #=> wird noch benötigt?
 
 
 #if TYPE_CHECKING: #Referenzprojekt
@@ -30,13 +31,19 @@ class Room:
         self.__facility_name = [] #Liste für Facilities des Raumes
         self.__room_available = True  #variable wird benötigt für die Suche nach Hotels mit verfügbaren Zimmern
 
-    @property
-    def room_id(self):
-        return self.__room_id
+    #@property => brauchen wir getter und setter für die ID?
+    #def room_id(self):
+        #return self.__room_id
 
     #@room_id.setter => Da Autoincrementation von SQL
     #def room_id(self,new_room_id):
         #self.__room_id = new_room_id
+
+# id_deleter
+    #@room_id.deleter
+    #def room_id(self):
+        #del self.__room_id
+
 
 #room_number
     @property
@@ -46,11 +53,6 @@ class Room:
     @room_number.setter
     def room_number(self,new_room_number):
         self.__room_number = new_room_number
-
-#id_deleter
-    @room_id.deleter #anschauen
-    def room_id(self):
-        del self.__room_id
 
 #price per night
     @property
