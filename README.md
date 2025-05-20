@@ -246,15 +246,18 @@ von bestehenden Instanzen anzupassen.
 
 ### Errors and Exceptions
 
-Python distinguishes between two types of problems in programming:
-Errors: These are problems that cannot be interpreted by Python and prevent the program from starting. Errors commonly indicate that something is missing or incomplete in the code and needs to be corrected before running a program. For example:
-SyntaxError - missing parentheses, missing colon in if/elif/else statements or for/while loops, missing required keywords like "in" in a for loop etc.
-IndentationError - incorrect no. of spaces/tabs due to which Python cannot interpret blocks
-NameError - Using variables before defining them, misspelled function names etc.
-Exceptions: These are problems that occur when the program is running. When an exception is encountered, Python cannot continue the execution of the code and results in a code crash. Exceptions can be handled gracefully by adding the code that might potentially cause a problem inside the try-except block.
-Python has the following syntax for handling exceptions:
-try
-except
+Errors und Exceptions sind Probmele, welche von Python nicht interpretiert werden können und verhindern, dass das Programm überhaupt ausgeführt wird (Errors) oder während der Programmausführung auftauchen (Exceptions). Häufig deutet es darauf hin, dass im Code etwas fehlt oder unvollständig ist.
+Häufige Beispiele für Errors sind:
+SyntaxError: Dies können z.B. fehlende Klammern, ein fehlender Doppelpunkt in einer Funktion oder fehlende Schlüsselwörter sein.
+IndentationError: Hierbei handelt es sich um einen Fehler in der Anzahl Leerschläge oder Tabs bevor der Code geschrieben wird. Die richtige Indentation ist wichtig, damit klar definiert ist zu welchen "Code-Block" der Code gehört. Alles was z.B. in den gleichen Loop gehört, muss sich "innerhalb" des Loops befinden und kann
+daher nicht auf der gleichen Zeile wie der Loop selbst beginnen -> es braucht eine Indentation.
+NameError: Die Verwendung von Variablen bevor diese überhaupt definiert wurden
+Exceptions können mit "try" "except" gut behandelt werden. Hier wird sodann unter "try" derjenige Codeblock vermerkt, der potentiell zu einer Exception führen könnte und unter "except" derjenige Code, welcher beim Eintreten einer solchen Exception stattdessen ausgeführt werden soll.
+
+*Reflexion über Relevanz für unser Projekt:*
+Den "Try - Except" Approach können wir für unser Projekt noch nicht genau einordnen, es erscheint zur Zeit noch etwas unklar in welchem Kontext wir diesen genau einsetzen können. Allerdings ist es für den Aufbau unserer Klassen unerlässlich, dass wir z.B. prüfen ob ein eingegebenes Value dem erwarteten Datentyp entspricht oder non-nullable Felder auch tatsächlich
+einen Wert enthalten bei der Erstellung von neuen Objekten aus der jeweiligen Klasse. So können wir z.B. sicherstellen, dass keine ValueError oder TypeError entstehen. 
+
 
 ## Zusammenfassung Unterrichtseinheit 2 Iteration 1
 
@@ -270,5 +273,14 @@ In unserem Projekt haben wird die voraussichtlich benötigten Klassen erstellt u
 
 In der heutigen Unterrichtseinheit haben wir die verschiedenen Beziehungsarten der Klassen angeschaut. Association: eine lose Beziehung, beide können unabhängig voneinander existieren benötigen aber einander (Mensch - Haustier). Aggregation: Die Parent-Class ist ein Container für die Child-Class. (Bibliothek - Büchern). Auch diese beiden können ohne einander existieren. Composition: Teil-von-Beziehung (Haus - Zimmer). Die Existenz der Teilobjekte ist abhängig von der Existenz des Hauptobjektes. Ohne Haus gibt es keine Zimmer. Im Anschluss an die Vorlesung haben wir im VP überprüft, welche Beziehungen unsere Classes untereinander haben. Einige waren relativ einfach wie z.B. die Beziehung zwischen Address und Hotel. Aus unserer Sicht handelt es sich dabei um eine Association, da nur eine lose Beziehung zwischen den beiden Classes besteht. Hingegen waren wir uns bei der Beziehung zwischen den Facilities und der Class Room unsicher. Haben uns aber schlussendlich für eine Aggregation entschieden, da wir der Meinung sind, dass der Raum als Container für die Facilities dient und die Facilities auch ohne einen Raum existieren kann. Wir haben dann versucht die Beziehungen in Code umzusetzen, haben aber dabei gemerkt, dass wir die verschiedenen Beziehungen nochmals überprüfen müssen.
 
+*Gruppenbesprechung und Reflexion zu den Beziehungen in unserem Projekt:*
 
+- Gast und Booking Klassen haben eine "composition"-Beziehung, weil die Person kein "Gast" ist, wenn sie keine Buchung hat, entsprechent gibt es den "Gast" auch nicht bzw. wir haben von der Person keine Daten. Wir gehen hierbei davon aus, dass eine Buchung nie gelöscht wird, sondern nur storniert werden kann. Es kann daher nicht vorkommen, dass ein "Gast" beim Löschen einer Buchung plötzlich ebenfalls gelöscht wäre.
+- Booking und Invoice haben eine eine "composition"-Beziehung, weil es keine Rechnung geben kann ohne Buchung. Die Buchung wird nie gelöscht, höchstens storniert. Die Rechnung kann aber gelöscht werden ohne dass dies die Buchung löscht.
+- Room und Booking haben eine "aggregation"-Beziehung. Hier wurde ursprünglich eine "composition" angedacht, da es keine Buchung geben kann für einen Raum wenn es den Raum nicht gibt. Diese Überlegung haben wir allerdings verworfen, da wir es nicht für relevant befinden ob der Raum an sich existiert, sondern ob dieser Raum gebucht werden soll oder nicht. Es kann diesen Raum auch geben, ohne dass er je gebucht wurde. Eine Aggregation macht aus unserer Sicht daher mehr Sinn, da wir den Raum bei einer Buchung "in die Buchung" einfügen möchten.
+- Address und Hotel sowie Address und Gast. Hier ist eine Association völlig ausreichend, da die Objekte dieser Klassen vollständig unabhängig voneinander existieren können, allerdings trotzdem verbunden sind (ein Hotel hat eine Adresse, ein Gast hat eine Adresse).
+- Room und Roomtype haben ebenfalls eine "association"-Beziehung, weil sie unabhängig voneinander existieren können. Nicht jedes HOtel hat zwingend Räume eines bestimmten Roomtypen. Ausserdem soll verhindert werden, dass ein Roomtype gelöscht wird, wenn ein Raum gelöscht wird, da derselbe Raumtyp anderen Räumen zugeordnet sein kann. Eine Aggregation erachten wir als nicht sinnvoll, da wir den Raumtype nicht "wörtlich" *in* den Raum hineinlegen, sondern ihn damit lediglich beschreiben.
+- Room und Facilities haben eine "aggregation"-Beziehung, weil die Objekte zwar unabhänging voneinander existieren können (z.B. gibt es Räume ohne Föhn und es gibt einen Föhn ohne Raum), aber wir legen den Föhn *in* den Raum für diejenigen Räume, welche einen haben.
+
+Das Ausarbeiten der Beziehungen zwischen den Klassen erachten wir als komplex. In vielen Konstellationen gibt es mehrere, teils gute, Begründungen weshalb die eine oder andere Beziehungsform valide sein könnte. In der Realität hängt dies stark vom Verwendungszweck der Klassen ab. Es ist wichtig zu versuchen vorauschauend zu denken, so dass bei zukünftigen Anpassungen oder Erweiterungen keine Probleme enstehen, allerdings empfinden wir dies nicht als "straight-forward". Die Beziehungen unserer Klassen haben wir daher auch mehrmals angepasst, bis wir uns auf eine Lösung für unser Projekt geeinigt haben. 
 
