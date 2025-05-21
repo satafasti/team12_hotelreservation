@@ -1,4 +1,4 @@
-from data_access.base_dal import BaseDAL
+from data_access.base_dal import Base_DAL
 from model.booking import Booking
 from typing import Optional, List
 
