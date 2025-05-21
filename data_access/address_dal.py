@@ -1,9 +1,9 @@
 
 import model
-from data_access.base_dal import BaseDAL
+from data_access.base_dal import Base_DAL
 
 
-class AddressDAL(BaseDAL):
+class AddressDAL(Base_DAL):
     def __init__(self, db_path: str = None):
         super().__init__(db_path)
 

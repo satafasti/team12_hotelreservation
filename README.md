@@ -24,9 +24,20 @@ empfohlen, dass jedes Teammitglied an der Videopräsentation beiträgt.
 
 #  Einleitung
 
+Dieses Projekt implementiert eine einfache HOtelbuchungs-Plattform auf Basis einer SQLite-Datenbank. Die Anwendung ermöglicht die Suche nach Hotels anhand
+flexibler Kriterien wie zum Beispiel die Stadt, Anzahl Sterne eines Hotels, gewünschter Reisezeitraum oder Anzahl Gäste. Die zugrunde liegende Datenbank
+beinhaltet im wesentlichen Informationen zu den Hotels, Zimmern, Ausstattung der Zimmer, Gäste, Buchungen und Rechnungen mit realistischen Beispieldaten.
+Die Datenstruktur bildet unter Anderem Beziehungen zwischen Hotels, Zimmern und Gästen und erlaubt es die Buchungen mit Check-in /  Check-out-Daten und Stornierungen
+zu verwalten. Die Anwendung nutzt Python zur Abfrage und Verarbeitung der Daten sowie einer benutzerfreundlichen Darstellung für den User. Ziel des Projektes
+ist es die Anwendungsentwicklung mit Python in einem praxisnahen Szenario zu erlernen und vertiefen.
+
 ## Kontext
 
-## User Stories
+Für dieses Projekt wird den Autoren eine SQLite Datenkbank mit realistischen Beispieldaten zu zum Beispiel Hotels, Räumen und Gästen zur Verfügung gestellt. 
+Diese soll als Basis dienen die im Unterricht erlernten Konzepte zur objektorientierten Entwicklung mit Python anhand eines realistischen Beispieles umzusetzen. 
+Die im Rahmen des Projektes entwickelten UserStories sind die Folgenden. 
+
+## User Stories -> am Schluss nur die effektiv umgesetzten erwähnen. 
 
 ### Minimale User Stories
 
@@ -181,6 +192,10 @@ Zusätzlich haben wir die **Interaktion mit Benutzern** durch *input()* kennenge
 Unsere Übungen haben auch gezeigt, dass **Geschäftslogik** eine zentrale Rolle in der Programmierung spielt. Wir haben gelernt, wie man Regeln in Code umsetzt, zum Beispiel Rabatte berechnet, den Lagerbestand überprüft oder zwischen digitalen und physischen Medien unterscheidet. Diese Konzepte sind essenziell für reale Anwendungen, wie Online-Shops oder Buchungssysteme.
 Ein weiteres wichtiges Konzept, das wir kennengelernt haben, war die **Verwendung von Tuples**. Tuples sind eine effiziente Möglichkeit, **unveränderliche Daten** zu speichern, da sie nicht nachträglich verändert werden können. Dies ist besonders nützlich für feste Datensätze, wie Album- oder Trackinformationen.
 
+*Reflexion über Relevanz für unser Projekt:*
+Die ersten beiden Unterrichtseinheiten gaben uns einen grundlegenden Einblick in die Anwendungsentwicklung mit Python. Wir haben die Syntax, den Umgang mit verschiedenen Datentypen sowie die Interaktion mit User und die Überprüfung auf Bedingungen kennengelernt. Alle diese Inputs werden für unser Projekt wichtig sein, da wir z.B. für die Abfrage von verfügbaren Hotels in einem bestimmten Zeitraum einen User-Input benötigen werden, in welchem dieser seine Wünsche definiert.
+Diese werden in Bezug auf den gewünschten Buchungszeitraum Datums-Eingaben enthalten, welche wir korrekt weiterverarbeiten können müssen um z.B. abzugleichen ob im gewünschten Zeitraum bereits Buchungen bestehen, aufgrund welcher ein bestimmtes Hotel oder bestimmte Räume in diesem Hotel nicht angezeigt werden dürfte, da sie nicht verfügbar sind. Für die Umsetzung dieser UserStories werden wir entsprechend zwingend mit User-Input, Bedingungen und verschiedenen Datentypen müssen umgehen können.
+
 ## Zusammenfassung Unterrichtseinheit 1 Iteration 3 
 
 ### Liste
@@ -199,57 +214,50 @@ list.reverse() -- kehrt die Liste an Ort und Stelle um (gibt sie nicht zurück)
 list.pop(index) -- Entfernt das Element am angegebenen Index und gibt es zurück. Gibt das ganz rechte Element zurück, wenn index weggelassen wird (ungefähr das Gegenteil von append()).
 
 ### For-Schleife
-- um ein Stück Code für eine bestimmte Anzahl von Iterationen zu wiederholen
-- für jedes Element in einer Liste 
-- eine Schleife mit einer Liste kombinieren eine Platzhaltervariable verwenden 
-- einen passenden Variablennamen verwenden
-- es wird bis zum letzten Element der Liste iteriert
-- Die Platzhaltervariable enthält das Element der Liste
-- Verwenden Sie range (), um die Anzahl der Iterationen anzugeben.
+Die For-Schleife wird verwendet um ein Stück Code für eine bestimmte Anzahl von Iterationen zu wiederholen. So kann zum Beispiel durch eine Liste iteriert werden um für jedes Element in der Liste den gleichen Code auszuführen. 
+Sobald durch das letzte Eltement iteriert wurde, endet die Schleife automatisch.
 
-die Funktion variable.lower() wird verwendet, um die Zeichenkette in Kleinbuchstaben umzuwandeln
-Durchsuchen einer Liste durch Vergleich der Benutzerauswahl mit dem entsprechenden Element in der Liste
-Die Variable flag wird verwendet, um zu prüfen, ob das Element gefunden wurde oder nicht.
-Verwenden Sie die Funktion len(), um die Anzahl der Titel in track_list anzuzeigen.
-Verwenden Sie die „in“-Klausel, um Titel mit einem Teiltitel zu suchen.
+Mit der Funktion variable.lower() kann man eine Zeichenkette in Kleinbuchstaben umzuwandeln. Dies kann hilfreich sein, wenn man den sicherstellen möchte, dass es für den User-Input keine Rolle spielt ob dieser gewisse Begriffe in Gross- oder Kleinbuchstaben eingibt. 
+Mit der Funktion len(), kann die Anzahl von Elementen in einer Liste geprüft werden. 
+Mit der „in“-Klausel, kann man sicherstellen, dass z.B. Suchergebnisse zurückgegeben werden, welche teilweise mit dem Input übereinstimmen.
 
 ### While-Schleife
- Eine while-Schleife wird oft verwendet, um einen Codeblock zu wiederholen, solange eine bestimmte Bedingung erfüllt ist
-Bedingte Variable innerhalb der Schleife ändern 
-
- den booleschen Wert direkt als Variable X = y!= 5 setzen
+Eine while-Schleife wird oft verwendet, um einen Codeblock zu wiederholen, solange eine bestimmte Bedingung erfüllt ist. Anders als bei der For-Schleife, gibt es für die While-Schleife kein automatische Ende. Sie wird solange ausgeführt, bis die Bedingung nicht mehr erfüllt ist.
+Es muss also sichergestellt werden, dass die Bedingung, welche den Loop unterbricht *innterhalb* des Loops definiert wird, da die Schleife ansonsten endlos weiterläuft.
 
 ### K.I.S.S. Principle
 Keep It Simple, Stupid or Keep It Super Simple
-Choosing unnecessarily complex solutions make it difficult for other people to understand and maintain the code
+Das K.I.S.S. Principle besagt, dass der Code so einfach wie möglich gehalten werden soll. Unnötig komplexe Lösungen erschweren nicht nur die Readability des Codes sondern erschweren auch die Zusammenarbeit mit anderen Developern. Der Code sollte so geschrieben werden, dass dieser von 
+jedem verstanden und unterhalten / gewartet werden kann.
 
-### Functions
+### DRY Principle
+Don't repeat yourself
+Dieses Prinzip besagt, dass man sich nicht wiederholen soll. Es ist sinnvoll sich Gedanken darüber zu machen welche Teile eines Codes universal gestaltet werden sollten, so dass diese in anderen Teilen der Applikation wiederverwendet und angepasst werden können, anstatt die gleichen Codeteile 
+wiederholt zu schreiben. Dies unterstütz die Maintainability des Codes, denn je nach Umständen müsste ein Developer ansonsten bei einer Anpassung sicherstellen können, dass an jedem einzelnen Ort im Code diese Anpassung ebenso reflektiert wird. Dies ist enorm fehleranfällig und sollte daher vermieden werden.
 
-- For modularity in code. They represent "actions" can be reused. 
-- abstraction. 
-- optional input parameters. 
-- processing logic that corresponds to the action or the responsibility they fulfill. 
-- functions may optionally return one or more values.
-- function definition : def function_name(parameter_1, parameter_2, ...):
-- function call.   executes what is defined in a function. function_name(parameter_1, parameter_2, ...)
-- pass values from the function call to the function using arguments and parameters. 
-- The value(s) generated by the function after processing can be returned to the processing block using the return statement. 
-- The return statement without any value can be used to terminate the function and pass control back to the processing block.
+### Funktionen
+Funktionen stellen sicher, dass eine gewisse Modularität im Code gewährleistet werden kann. Sie unterstützen das DRY Prinzip, da Funktionen "Aktionen" darstellen, welche wiederverwendet werden können. 
 
-readability, understandability and extendability
-logical groupings 
+*Reflexion über Relevanz für unser Projekt:*
+In den letzten Unterrichtseinheiten haben wir uns mit Listen, Loops, Funktionen und den K.I.S.S- und DRY Prinzipien beschäftigt. Für unser Projekt dürfte insbesondere der For-Loop wichtig werden, wenn wir z.B. herausfinden möchten, welche Hotels sich alle in einer bestimmten Stadt befinden und daher über alle Hotels iterieren
+möchten, oder wenn geprüft werden soll ob ein bestimmter Raum im gewünschten Reisezeitraum vergübar ist oder nicht und dazu die Buchungen überprüft werden müssen. Genauso wichtig dürften auch die Funktionen werden, da wir irgendwie Code schreiben können müssen, der es uns erlaubt z.B. neue Hotels und Räume zu kreieren oder Daten 
+von bestehenden Instanzen anzupassen. 
+
 
 ### Errors and Exceptions
 
-Python distinguishes between two types of problems in programming:
-Errors: These are problems that cannot be interpreted by Python and prevent the program from starting. Errors commonly indicate that something is missing or incomplete in the code and needs to be corrected before running a program. For example:
-SyntaxError - missing parentheses, missing colon in if/elif/else statements or for/while loops, missing required keywords like "in" in a for loop etc.
-IndentationError - incorrect no. of spaces/tabs due to which Python cannot interpret blocks
-NameError - Using variables before defining them, misspelled function names etc.
-Exceptions: These are problems that occur when the program is running. When an exception is encountered, Python cannot continue the execution of the code and results in a code crash. Exceptions can be handled gracefully by adding the code that might potentially cause a problem inside the try-except block.
-Python has the following syntax for handling exceptions:
-try
-except
+Errors und Exceptions sind Probmele, welche von Python nicht interpretiert werden können und verhindern, dass das Programm überhaupt ausgeführt wird (Errors) oder während der Programmausführung auftauchen (Exceptions). Häufig deutet es darauf hin, dass im Code etwas fehlt oder unvollständig ist.
+Häufige Beispiele für Errors sind:
+SyntaxError: Dies können z.B. fehlende Klammern, ein fehlender Doppelpunkt in einer Funktion oder fehlende Schlüsselwörter sein.
+IndentationError: Hierbei handelt es sich um einen Fehler in der Anzahl Leerschläge oder Tabs bevor der Code geschrieben wird. Die richtige Indentation ist wichtig, damit klar definiert ist zu welchen "Code-Block" der Code gehört. Alles was z.B. in den gleichen Loop gehört, muss sich "innerhalb" des Loops befinden und kann
+daher nicht auf der gleichen Zeile wie der Loop selbst beginnen -> es braucht eine Indentation.
+NameError: Die Verwendung von Variablen bevor diese überhaupt definiert wurden
+Exceptions können mit "try" "except" gut behandelt werden. Hier wird sodann unter "try" derjenige Codeblock vermerkt, der potentiell zu einer Exception führen könnte und unter "except" derjenige Code, welcher beim Eintreten einer solchen Exception stattdessen ausgeführt werden soll.
+
+*Reflexion über Relevanz für unser Projekt:*
+Den "Try - Except" Approach können wir für unser Projekt noch nicht genau einordnen, es erscheint zur Zeit noch etwas unklar in welchem Kontext wir diesen genau einsetzen können. Allerdings ist es für den Aufbau unserer Klassen unerlässlich, dass wir z.B. prüfen ob ein eingegebenes Value dem erwarteten Datentyp entspricht oder non-nullable Felder auch tatsächlich
+einen Wert enthalten bei der Erstellung von neuen Objekten aus der jeweiligen Klasse. So können wir z.B. sicherstellen, dass keine ValueError oder TypeError entstehen. 
+
 
 ## Zusammenfassung Unterrichtseinheit 2 Iteration 1
 
@@ -265,13 +273,14 @@ In unserem Projekt haben wird die voraussichtlich benötigten Klassen erstellt u
 
 In der heutigen Unterrichtseinheit haben wir die verschiedenen Beziehungsarten der Klassen angeschaut. Association: eine lose Beziehung, beide können unabhängig voneinander existieren benötigen aber einander (Mensch - Haustier). Aggregation: Die Parent-Class ist ein Container für die Child-Class. (Bibliothek - Büchern). Auch diese beiden können ohne einander existieren. Composition: Teil-von-Beziehung (Haus - Zimmer). Die Existenz der Teilobjekte ist abhängig von der Existenz des Hauptobjektes. Ohne Haus gibt es keine Zimmer. Im Anschluss an die Vorlesung haben wir im VP überprüft, welche Beziehungen unsere Classes untereinander haben. Einige waren relativ einfach wie z.B. die Beziehung zwischen Address und Hotel. Aus unserer Sicht handelt es sich dabei um eine Association, da nur eine lose Beziehung zwischen den beiden Classes besteht. Hingegen waren wir uns bei der Beziehung zwischen den Facilities und der Class Room unsicher. Haben uns aber schlussendlich für eine Aggregation entschieden, da wir der Meinung sind, dass der Raum als Container für die Facilities dient und die Facilities auch ohne einen Raum existieren kann. Wir haben dann versucht die Beziehungen in Code umzusetzen, haben aber dabei gemerkt, dass wir die verschiedenen Beziehungen nochmals überprüfen müssen.
 
-## Zusammenfassung Unterrichtseinheit 3 Iteration 2
+*Gruppenbesprechung und Reflexion zu den Beziehungen in unserem Projekt:*
 
-In dieser Unterrichtseinheit haben wir uns mit dem Aufbau eines Data-Access-Layers (DAL) in Python beschäftigt. Ziel war es, den Zugriff auf eine SQLite-Datenbank so zu gestalten, dass wiederkehrender Code gekapselt und wiederverwendbar wird. Dabei wurde eine Basisklasse erstellt, welche Methoden wie fetchone(), fetchall() und execute() zur Verfügung stellt. Die Besonderheit dabei ist, dass nur das SQL-Statement und die Parameter verändert werden müssen – die eigentliche Logik bleibt gleich.
+- Gast und Booking Klassen haben eine "composition"-Beziehung, weil die Person kein "Gast" ist, wenn sie keine Buchung hat, entsprechent gibt es den "Gast" auch nicht bzw. wir haben von der Person keine Daten. Wir gehen hierbei davon aus, dass eine Buchung nie gelöscht wird, sondern nur storniert werden kann. Es kann daher nicht vorkommen, dass ein "Gast" beim Löschen einer Buchung plötzlich ebenfalls gelöscht wäre.
+- Booking und Invoice haben eine eine "composition"-Beziehung, weil es keine Rechnung geben kann ohne Buchung. Die Buchung wird nie gelöscht, höchstens storniert. Die Rechnung kann aber gelöscht werden ohne dass dies die Buchung löscht.
+- Room und Booking haben eine "aggregation"-Beziehung. Hier wurde ursprünglich eine "composition" angedacht, da es keine Buchung geben kann für einen Raum wenn es den Raum nicht gibt. Diese Überlegung haben wir allerdings verworfen, da wir es nicht für relevant befinden ob der Raum an sich existiert, sondern ob dieser Raum gebucht werden soll oder nicht. Es kann diesen Raum auch geben, ohne dass er je gebucht wurde. Eine Aggregation macht aus unserer Sicht daher mehr Sinn, da wir den Raum bei einer Buchung "in die Buchung" einfügen möchten.
+- Address und Hotel sowie Address und Gast. Hier ist eine Association völlig ausreichend, da die Objekte dieser Klassen vollständig unabhängig voneinander existieren können, allerdings trotzdem verbunden sind (ein Hotel hat eine Adresse, ein Gast hat eine Adresse).
+- Room und Roomtype haben ebenfalls eine "association"-Beziehung, weil sie unabhängig voneinander existieren können. Nicht jedes HOtel hat zwingend Räume eines bestimmten Roomtypen. Ausserdem soll verhindert werden, dass ein Roomtype gelöscht wird, wenn ein Raum gelöscht wird, da derselbe Raumtyp anderen Räumen zugeordnet sein kann. Eine Aggregation erachten wir als nicht sinnvoll, da wir den Raumtype nicht "wörtlich" *in* den Raum hineinlegen, sondern ihn damit lediglich beschreiben.
+- Room und Facilities haben eine "aggregation"-Beziehung, weil die Objekte zwar unabhänging voneinander existieren können (z.B. gibt es Räume ohne Föhn und es gibt einen Föhn ohne Raum), aber wir legen den Föhn *in* den Raum für diejenigen Räume, welche einen haben.
 
-Ein zentrales Element war der Einsatz des Kontextmanagers (with-Statement), um Datenbankverbindungen sicher zu öffnen und automatisch wieder zu schliessen. Auch Transaktionen wurden behandelt – z. B. durch Verwendung von conn.commit() und conn.rollback() im Fehlerfall. Für die Typenumwandlung, insbesondere von Datumswerten, wurden register_adapter und register_converter verwendet.
-
-Die Basisklasse ermöglicht es, konkrete Data-Access-Klassen (z. B. für Artist, Hotel, Room) durch Vererbung zu spezialisieren. Für die ArtistDataAccess-Klasse wurde beispielhaft gezeigt, wie mit Hilfe von fetchone() ein einzelnes Tupel aus der Datenbank gelesen und daraus ein Artist-Objekt erzeugt werden kann. Bei Abfragen mit mehreren Resultaten (z. B. readArtistsLikeName) wird über die Resultate geloopt und jeweils ein Objekt erzeugt.
-
-Durch diese Struktur lässt sich der Datenbankzugriff von der Businesslogik trennen. Die Abfragen werden klarer, sicherer (Vermeidung von SQL-Injection durch ?-Platzhalter statt F-Strings) und einfacher zu testen. Am Ende haben wir erkannt, dass dieses Muster für alle Klassen im Projekt übernommen werden kann – lediglich SQL und Mapping müssen je Klasse angepasst werden.
+Das Ausarbeiten der Beziehungen zwischen den Klassen erachten wir als komplex. In vielen Konstellationen gibt es mehrere, teils gute, Begründungen weshalb die eine oder andere Beziehungsform valide sein könnte. In der Realität hängt dies stark vom Verwendungszweck der Klassen ab. Es ist wichtig zu versuchen vorauschauend zu denken, so dass bei zukünftigen Anpassungen oder Erweiterungen keine Probleme enstehen, allerdings empfinden wir dies nicht als "straight-forward". Die Beziehungen unserer Klassen haben wir daher auch mehrmals angepasst, bis wir uns auf eine Lösung für unser Projekt geeinigt haben. 
 
