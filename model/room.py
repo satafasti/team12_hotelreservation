@@ -31,13 +31,13 @@ class Room:
         self.__facility_name = [] #Liste für Facilities des Raumes
 
 
-    #@property => brauchen wir getter und setter für die ID?
-    #def room_id(self):
-        #return self.__room_id
+    @property => brauchen wir getter und setter für die ID?
+    def room_id(self):
+        return self.__room_id
 
-    #@room_id.setter => Da Autoincrementation von SQL
-    #def room_id(self,new_room_id):
-        #self.__room_id = new_room_id
+    @room_id.setter => Da Autoincrementation von SQL
+    def room_id(self,new_room_id):
+        self.__room_id = new_room_id
 
 # id_deleter
     #@room_id.deleter
