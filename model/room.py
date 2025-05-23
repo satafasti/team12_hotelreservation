@@ -10,7 +10,7 @@ import model.facilities
     #from model.track import Track #Referenzprojekt
 
 class Room:
-    def __init__(self, room_id : int, room_number : int, price_per_night : float,  description: model.room_type): #ID ist in SQL enthalten?
+    def __init__(self, room_id : int, room_number : int, price_per_night : float,  description: model.room_type.Room_Type, room_available=True): #ID ist in SQL enthalten?
         if not room_id:
             raise ValueError("room_id must be set")
         if not isinstance(room_id, int):
@@ -29,6 +29,7 @@ class Room:
         self.__price_per_night = price_per_night
         self.__description = description #Description von Class room_type soll übergeben werden
         self.__facility_name = [] #Liste für Facilities des Raumes
+        self.room_available = room_available
 
 
     @property
@@ -38,12 +39,6 @@ class Room:
     @room_id.setter
     def room_id(self,new_room_id):
         self.__room_id = new_room_id
-
-# id_deleter
-    #@room_id.deleter
-    #def room_id(self):
-        #del self.__room_id
-
 
 #room_number
     @property
