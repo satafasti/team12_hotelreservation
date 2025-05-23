@@ -6,11 +6,12 @@ class RoomDAL(BaseDAL):
     def __init__(self, db_path: str = None):
         super().__init__(db_path)
 
-    def create_room(self, room: model.Room): #room.description kommt aber von Room_Type
+    def create_room(self, room: model.Room):
         sql = """
-        INSERT INTO Room (room_id, room_number, price_per_night) VALUES (?, ?, ?, ?)
+        INSERT INTO Room (room_id, room_number, price_per_night) VALUES ( ?, ?, ?)
         """
-        params = (room.room_id if room else None, room.room_number, room.price_per_night, room.description)
+        params = (room.room_id if room else None, room.room_number, room.price_per_night, room.hotel_id, room.type_id
+                  )
         self.execute(sql, params)
 
     def show_room_by_id(self, room: model.Room):
@@ -20,16 +21,16 @@ class RoomDAL(BaseDAL):
         params = (room.room_id,)
         result = self.fetch_one(sql, params)
         if result:
-            room_id, room_number, price_per_night, description = result
-            return model.Room(room_id, room_number, price_per_night, description)
+            room_id, room_number, price_per_night = result
+            return model.Room(room_id, room_number, price_per_night)
         else:
             return None
 
-    def update_room(self, room: model.Room): #room.description kommt aber von Room_Type
+    def update_room(self, room: model.Room):
         sql = """
         UPDATE Room SET room_number = ?, price_per_night = ? WHERE room_id = ?
         """
-        params = (room.room_number, room.price_per_night, room.description)
+        params = (room.room_number, room.price_per_night, room.room_id)
         self.execute(sql, params)
 
     def delete_room(self, room: model.Room):
