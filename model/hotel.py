@@ -1,5 +1,5 @@
 class Hotel:
-    def __init__ (self, hotel_id:int, name:str, stars:int, address:str, rooms: list): #address als str oder address_id?
+    def __init__ (self, hotel_id:int, name:str, stars:int, address:str, rooms: list, address_id=None): #address als str oder address_id?
         if not hotel_id:
             raise ValueError("hotel_id must be set")
         if not isinstance(hotel_id , int):
@@ -17,7 +17,7 @@ class Hotel:
         self.__name = name
         self.__stars = stars
         self.__rooms = []
-        self.__address = address  #single instance of class Address, as of now no backwards link from address -> hotel necessary, to find all hotels in a city loop through existing instances by city
+        self.__address_id = address_id  #single instance of class Address, as of now no backwards link from address -> hotel necessary, to find all hotels in a city loop through existing instances by city
 
     @property    
     def name(self):
@@ -48,7 +48,7 @@ class Hotel:
         else:
             print("Stars must be a number between 1 and 5.")
 
-""" Wenn mit address_id gearbeitet werden soll
+# Wenn mit address_id gearbeitet werden soll
     @property  # damit auf address_id zugegriffen werden kann
     def address_id(self):
         return self.__address_id
@@ -56,10 +56,7 @@ class Hotel:
     @address_id.setter
     def address_id(self, new_address_id):
         self.__address_id = new_address_id
-"""
 
-            #SQL noch einmal abgleichen
-            # bool - der mit dem datum verbunden ist -> mit einem for-loop über die räume iterieren und for-loop auf start und enddatum
 
 
 

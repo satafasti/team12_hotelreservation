@@ -1,9 +1,9 @@
 
 import model
-from data_access.base_dal import Base_DAL
+from data_access.base_dal import BaseDAL
 
 
-class AddressDAL(Base_DAL):
+class AddressDAL(BaseDAL):
     def __init__(self, db_path: str = None):
         super().__init__(db_path)
 
@@ -12,7 +12,7 @@ class AddressDAL(Base_DAL):
         SELECT * FROM Address WHERE address_id = ?
         """
         params = (address.address_id,)
-        result = self.fetchone(sql, params)
+        result = self.fetch_one(sql, params)
         if result:
             address_id, street, city, zip_code = result
             return model.Address(address_id, street, city, zip_code)

@@ -1,18 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="hotel_reservation_sample.db" uuid="e4b810ea-47b5-4c72-a460-2403228c0e42">
+    <data-source source="LOCAL" name="hotel_reservation_sample" uuid="60a98eb1-7c2c-4929-9147-9ba11ffe10e4">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:C:\Users\holze\OneDrive - FHNW\Anwendung Phyton\team12_hotelreservation\database\hotel_reservation_sample.db</jdbc-url>
-      <working-dir>$ProjectFileDir$</working-dir>
-    </data-source>
-    <data-source source="LOCAL" name="identifier.sqlite" uuid="ecc01383-ddc2-40ef-b8d4-b4f70fa63511">
-      <driver-ref>sqlite.xerial</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:identifier.sqlite</jdbc-url>
+      <jdbc-url>jdbc:sqlite:C:\Users\sc_sg\PycharmProjects\team12_hotelreservation\database\hotel_reservation_sample.db</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>

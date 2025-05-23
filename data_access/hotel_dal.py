@@ -1,10 +1,11 @@
 from __future__ import annotations
 
 import model
-from data_access.base_dal import Base_DAL
+from data_access.base_dal import BaseDAL
 
 
-class HotelDAL(Base_DAL):
+
+class HotelDAL(BaseDAL):
     def __init__(self, db_path: str = None):
         super().__init__(db_path)
 
@@ -15,17 +16,17 @@ class HotelDAL(Base_DAL):
         params = (hotel.hotel_id if hotel else None, hotel.name, hotel.stars, hotel.address_id)
         self.execute(sql, params)
 
-    def show_hotels_by_id(self, hotel: model.Hotel):
-        sql = """
-        SELECT * FROM Hotel WHERE hotel_id = ?
-        """
-        params = (hotel.hotel_id)
-        result = self.fetch_one(sql, params)
-        if result:
-            hotel_id, name, stars, address_id = result
-            return model.Hotel(hotel_id, name, stars, address_id)
-        else:
-            return None
+
+    def show_all_hotels(self):
+        sql = "SELECT * FROM Hotel"
+        results = self.fetch_all(sql)  # kommt aus BaseDAL
+        hotels = []
+
+        for row in results:
+            hotel_id, name, stars, address_id = row
+            hotels.append(model.Hotel(hotel_id, name, stars, address_id))
+
+            return hotels
 
     def update_hotel(self, hotel: model.Hotel):
         sql = """

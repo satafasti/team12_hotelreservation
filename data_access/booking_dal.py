@@ -1,3 +1,4 @@
+import model
 from data_access.base_dal import BaseDAL
 from model.booking import Booking
 from typing import Optional, List
@@ -79,3 +80,13 @@ class BookingDAL(BaseDAL):
         sql = "DELETE FROM Booking WHERE booking_id = ?"
         self.execute_query(sql, (booking_id,))
         self.disconnect()
+
+  def show_all_bookings(self):
+        sql = "SELECT * FROM Booking"
+        results = self.fetch_all(sql)  # kommt aus BaseDAL
+        bookings = []
+
+        for row in results:
+            booking_id, guest_id, room_id, check_in_date, check_out_date, is_cancelled, total_amount = row
+            bookings.append(model.Booking(booking_id, guest_id, room_id, check_in_date, check_out_date, is_cancelled, total_amount))
+            return bookings
