@@ -29,7 +29,7 @@ class Room:
         self.__price_per_night = price_per_night
         self.__description = description #Description von Class room_type soll übergeben werden
         self.__facility_name = [] #Liste für Facilities des Raumes
-        self.__room_available = True  #variable wird benötigt für die Suche nach Hotels mit verfügbaren Zimmern
+
 
     #@property => brauchen wir getter und setter für die ID?
     #def room_id(self):

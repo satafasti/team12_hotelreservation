@@ -1,5 +1,5 @@
 class Hotel:
-    def __init__ (self, hotel_id:int, name:str, stars:int, address:str, rooms: list, address_id=None): #address als str oder address_id?
+    def __init__ (self, hotel_id:int, name:str, stars:int, address:str, rooms: list, address_id:int): #address als str oder address_id?
         if not hotel_id:
             raise ValueError("hotel_id must be set")
         if not isinstance(hotel_id , int):
