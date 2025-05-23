@@ -38,8 +38,8 @@ class HotelManager:
             raise ValueError("Hotel name cannot be empty.")
         if not isinstance(name, str):
             raise ValueError("Hotel name must be a str")
-        if name not in self.__name: # irgendwie noch nicht ganz so logisch, daher wohl falsch => Variable muss definiert werden und nicht self.__
-            self.__name.append(name) # stimmt noch nicht
+        if name not in self.__name: # irgendwie noch nicht ganz so logisch, daher wohl falsch
+            self.__name.append(name)
             hotel.name = self
         if not address:
             raise ValueError("Address cannot be empty.")
