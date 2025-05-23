@@ -17,7 +17,7 @@ class InvoiceDAL(BaseDAL):
 
     def show_invoice_by_id(self, invoice: model.Invoice):
         sql = """
-        SELECT * FROM Invoice WHERE room_id = ?
+        SELECT * FROM Invoice WHERE Invoice.invoice_id = ?
         """
         params = (invoice.invoice_id,)
         result = self.fetch_one(sql, params)
@@ -49,6 +49,6 @@ class InvoiceDAL(BaseDAL):
         for row in results:
             invoice_id, booking_id, issue_date, total_amount = row
             invoices.append(model.Invoice(invoice_id, booking_id, issue_date, total_amount))
-            return invoices
+        return invoices
 
 
