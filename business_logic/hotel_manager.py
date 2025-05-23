@@ -1,16 +1,18 @@
 import data_access
-from model import Room, room
-from model.hotel import Hotel
+from model import Room
+from model import Hotel
+from model import Room_Type
+
 
 class HotelManager:
     def __init__(self) -> None:
         self.__hotel_dal = data_access.HotelDAL()
+        self.__rooms = []
 
+    def get_hotel_details(self, hotel: Hotel):
+        return f"Hotel name: {hotel.name}, Stars: {hotel.stars}"
 
-    def get_hotel_details(self):
-        return f"Hotel name: {self.__name}, Stars: {self.__stars}"
-
-    def add_room(self, room_id: int, room_number: int, price_per_night: float, type_id: int):
+    def add_room(self, room_id: int, room_number: int, price_per_night: float, type_id: Room_Type):
         room = Room(room_id, room_number, price_per_night, type_id)
         self.__rooms.append(room)
 
@@ -25,26 +27,55 @@ class HotelManager:
             self.__rooms.remove(room)
 
 
-    def show_room_details(self):
-        print(f"Hotel name: {self.__name}, {self.__stars} Stars")
-        for room in self.__rooms:
-            print(room.get_room_details())
+    def get_room_details(self, room: Room):
+        return f"Room ID: {room.room_id}, Room Number: {room.room_number}, Price per Night: {room.price_per_night}, Room Type: {room.description}"
+
+
+    #def show_room_details(self):
+     #   print(f"Hotel name: {room.name}, {self.__stars} Stars")
+      #  for room in self.__rooms:
+       #     print(room.get_room_details())
 
     ## unclear if the show_room_details goes here and is correct? because we want to show the hotel details incl. the room details , only the room details will already be covered by the same function in the room class
 
+###
+    #def add_new_hotel(self, hotel_id: int, name: str, stars: int, address: str) -> Hotel:
+        #if not name:
+         #   raise ValueError("Hotel name cannot be empty.")
+        #if not isinstance(name, str):
+        #   raise ValueError("Hotel name must be a str")
+        #if name not in self.__name: # irgendwie noch nicht ganz so logisch, daher wohl falsch
+        #    self.__name.append(name)
+        #    hotel.name = self
+        #if not address:
+        #    raise ValueError("Address cannot be empty.")
+        #if not isinstance(name, str):
+        #    raise ValueError("Address must be a str")
+        #if address not in self.__address: # irgendwie noch nicht ganz so logisch, daher wohl falsch
+        #    self.__address.append(address)
+    #    hotel.address = self
+###
 
-    def add_new_hotel(self, hotel_id: int, name: str, stars: int, address: str) -> Hotel:
-        if not name:
-            raise ValueError("Hotel name cannot be empty.")
-        if not isinstance(name, str):
-            raise ValueError("Hotel name must be a str")
-        if name not in self.__name: # irgendwie noch nicht ganz so logisch, daher wohl falsch
-            self.__name.append(name)
-            hotel.name = self
-        if not address:
-            raise ValueError("Address cannot be empty.")
-        if not isinstance(name, str):
-            raise ValueError("Address must be a str")
-        if address not in self.__address: # irgendwie noch nicht ganz so logisch, daher wohl falsch
-            self.__address.append(address)
-            hotel.address = self
+
+    def search_hotels(self, city=None, stars=None, guests=None):
+        results = []
+
+        hotel = self.__hotel_dal.show_all_hotels()
+
+        for hotel in hotel:  # wir haben keine Liste von Hotels, muss zwingend auf hotel_id referenziert werden?
+            if city and hotel.address.city.lower() != city.lower():
+                continue
+            if stars and hotel.stars < stars:
+                continue
+
+            for room in hotel.rooms:
+                if guests and room.description.max_guests < guests:
+                    continue
+                if getattr(room, "room_available", True) is False:
+                    continue
+
+                # Sobald ein passender Raum gefunden wurde, reicht es – Hotel ist relevant
+                results.append(hotel)
+                break  # keine weiteren Zimmer prüfen
+
+        return results

@@ -1,5 +1,5 @@
 class Guest:
-    def __init__(self, guest_id: int, first_name: str, last_name: str, email: str, address_id: int = None,):
+    def __init__(self, guest_id: int, first_name: str, last_name: str, email: str, address_id: int):
         if not guest_id:
             raise ValueError("Guest ID is required")
         if not isinstance(guest_id, int):
@@ -71,6 +71,8 @@ class Guest:
         
     @address_id.setter
     def address_id(self, new_address_id: int):
-        if new_address_id is not None and not isinstance(new_address_id, int):
+        if not new_address_id:
+            raise ValueError ("Address ID wird benötigt")
+        if not isinstance(new_address_id, int):
             raise TypeError("Address ID must be an integer")
         self.__address_id = new_address_id

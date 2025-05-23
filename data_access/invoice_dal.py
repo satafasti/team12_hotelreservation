@@ -41,4 +41,14 @@ class InvoiceDAL(BaseDAL):
         params = (invoice.invoice_id,invoice.booking_id)
         self.execute(sql, params)
 
+    def show_all_invoices(self):
+        sql = "SELECT * FROM Invoice"
+        results = self.fetch_all(sql)  # kommt aus BaseDAL
+        invoices = []
+
+        for row in results:
+            invoice_id, booking_id, issue_date, total_amount = row
+            invoices.append(model.Invoice(invoice_id, booking_id, issue_date, total_amount))
+            return invoices
+
 
