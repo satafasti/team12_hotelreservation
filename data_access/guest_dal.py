@@ -40,3 +40,13 @@ class GuestDAL(BaseDAL):
         """
         params = (guest.guest_id,)
         self.execute(sql, params)
+
+    def show_all_guests(self):
+        sql = "SELECT * FROM Guest"
+        results = self.fetch_all(sql)  # kommt aus BaseDAL
+        guests = []
+
+        for row in results:
+            guest_id, first_name, last_name, email, address_id = row
+            guests.append(model.Guest(guest_id, first_name, last_name, email, address_id))
+            return guests
