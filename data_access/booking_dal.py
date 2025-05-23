@@ -81,9 +81,10 @@ class BookingDAL(BaseDAL):
         self.execute_query(sql, (booking_id,))
         self.disconnect()
 
-  def show_all_bookings(self):
+
+def show_all_bookings(self):
         sql = "SELECT * FROM Booking"
-        results = self.fetch_all(sql)  # kommt aus BaseDAL
+        results = self.fetch_all(sql)  # commit aus BaseDAL
         bookings = []
 
         for row in results:
