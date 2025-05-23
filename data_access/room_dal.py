@@ -8,7 +8,7 @@ class RoomDAL(BaseDAL):
 
     def create_room(self, room: model.Room): #room.description kommt aber von Room_Type
         sql = """
-        INSERT INTO Room (room_id, room_number, price_per_night, description) VALUES (?, ?, ?, ?)
+        INSERT INTO Room (room_id, room_number, price_per_night) VALUES (?, ?, ?, ?)
         """
         params = (room.room_id if room else None, room.room_number, room.price_per_night, room.description)
         self.execute(sql, params)
@@ -27,7 +27,7 @@ class RoomDAL(BaseDAL):
 
     def update_room(self, room: model.Room): #room.description kommt aber von Room_Type
         sql = """
-        UPDATE Room SET room_number = ?, price_per_night = ?, description = ? WHERE room_id = ?
+        UPDATE Room SET room_number = ?, price_per_night = ? WHERE room_id = ?
         """
         params = (room.room_number, room.price_per_night, room.description)
         self.execute(sql, params)
