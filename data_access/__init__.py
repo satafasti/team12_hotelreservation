@@ -1,7 +1,7 @@
 from datetime import date, datetime
 import sqlite3
 
-from .base_dal import Base_DAL
+from .base_dal import BaseDAL
 from .address_dal import AddressDAL
 from .booking_dal import BookingDAL
 from .facilities_dal import FacilitiesDAL
