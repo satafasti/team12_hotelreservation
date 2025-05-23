@@ -13,8 +13,8 @@ class RoomManager:
     def create_room(self, room_id : int, room_number : int, price_per_night : float, description : Room_Type) -> Room:
         return self.__room_dal.create_new_room(room_id, room_number, price_per_night, description)
 
-    def get_room_details(self, room: Room): #evtl. irgendwo anders ablegen statt hier
-        return f"Room ID: {room.room_id}, Room Number: {room.room_number}, Price per Night: {room.price_per_night}, Room Type: {room.description}"
+    #def get_room_details(self, room: Room): #evtl. irgendwo anders ablegen statt hier => im HotelManager
+        #return f"Room ID: {room.room_id}, Room Number: {room.room_number}, Price per Night: {room.price_per_night}, Room Type: {room.description}"
 
     def add_description(self, room: Room, description: Room_Type):
         if not description:
@@ -34,41 +34,14 @@ class RoomManager:
             self.__facility_name.append(facility_name)
             room.facility_name = self
 
-
-def show_room_facilities(rooms):
-    print("Zimmerausstattung:")
-    for r in rooms:
-        print(f" - Zimmer {r.room_number}: {', '.join(r.facility_name)}")
-
+    def show_room_facilities(rooms):
+        print("Zimmerausstattung:")
+        for r in rooms:
+            print(f" - Zimmer {r.room_number}: {', '.join(r.facility_name)}")
 
 
-    #def add_track(self, track: Track) -> None:
-        #from model import Track
-
-        #if not track:
-            #raise ValueError("track is required")
-        #if not isinstance(track, Track):
-            #raise ValueError("track must be an instance of Track")
-        #if track not in self.__tracks:
-            #self.__tracks.append(track)
-            #track.album = self
-
-
-    #def read_facilities_room(self, room: model.facilities) -> None:
-        #self.__room_dal.read_facilities_by_room(facilities)
-
-    #def read_room(self, room_id : int, room_number : int, price_per_night : float, type_id : model.room_type) -> model.Room:
-        #return self.__room_dal.read_room_by_id(room_id)
-
-#class Album_Manager():
-    #def __init__(self) -> None:
-        #self.__album_dal = data_access.AlbumDAL()
-
-    #def create_album(self, title: str, artist: model.Artist = None) -> model.Album:
-        #return self.__album_dal.create_new_album(title, artist)
-
-    #def read_artists_albums(self, artist: model.Artist) -> None:
-        #self.__album_dal.read_albums_by_artist(artist)
-
-    #def read_album(self, album_id: int) -> model.Album:
-        #return self.__album_dal.read_album_by_id(album_id)
+    def is_available(self):
+        for room in self.__hotel.rooms:
+            if room.room_id == self.room_id and room.room_available == True:
+                return True
+        return False
