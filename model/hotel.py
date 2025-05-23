@@ -1,5 +1,8 @@
+from Tanja_Test import Address
+
+
 class Hotel:
-    def __init__ (self, hotel_id:int, name:str, stars:int, address:str, rooms: list, address_id:int): #address als str oder address_id?
+    def __init__ (self, hotel_id:int, name:str, stars:int, address: Address, rooms: list, address_id:int): #address als str oder address_id?
         if not hotel_id:
             raise ValueError("hotel_id must be set")
         if not isinstance(hotel_id , int):
@@ -10,14 +13,14 @@ class Hotel:
             raise TypeError("name must be a string")
         if not address:
             raise ValueError("address must be set")
-        if not isinstance(address, str):
-            raise TypeError("address must be a string")
+        if not isinstance(address, Address):
+            raise TypeError("address must be an Address instance")
 
         self.__hotel_id = hotel_id
         self.__name = name
         self.__stars = stars
-        self.__rooms = []
-        self.__address_id = address_id  #single instance of class Address, as of now no backwards link from address -> hotel necessary, to find all hotels in a city loop through existing instances by city
+        self.__rooms = rooms
+        self.__address = address #single instance of class Address, as of now no backwards link from address -> hotel necessary, to find all hotels in a city loop through existing instances by city
 
     @property    
     def name(self):
@@ -48,14 +51,9 @@ class Hotel:
         else:
             print("Stars must be a number between 1 and 5.")
 
-# Wenn mit address_id gearbeitet werden soll
-    @property  # damit auf address_id zugegriffen werden kann
-    def address_id(self):
-        return self.__address_id
-
-    @address_id.setter
-    def address_id(self, new_address_id):
-        self.__address_id = new_address_id
+    @property
+    def address(self):
+        return self.__address
 
 
 

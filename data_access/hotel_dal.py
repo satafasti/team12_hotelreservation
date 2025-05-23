@@ -24,9 +24,13 @@ class HotelDAL(BaseDAL):
 
         for row in results:
             hotel_id, name, stars, address_id = row
-            hotels.append(model.Hotel(hotel_id, name, stars, address_id))
+            address = self.get_address_by_id(address_id)
+            rooms = self.get_rooms_by_hotel(hotel_id)  # brauchst du auch
 
-    return hotels
+            hotel = model.Hotel(hotel_id, name, stars, address, rooms, address_id)
+            hotels.append(hotel)
+
+        return hotels
 
     def update_hotel(self, hotel: model.Hotel):
         sql = """

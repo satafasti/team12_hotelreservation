@@ -1,14 +1,15 @@
 import data_access
-from model import Room, room
-from model.hotel import Hotel
+from model import Room
+from model import Hotel
+
 
 class HotelManager:
     def __init__(self) -> None:
         self.__hotel_dal = data_access.HotelDAL()
 
 
-    def get_hotel_details(self):
-        return f"Hotel name: {self.__name}, Stars: {self.__stars}"
+    def get_hotel_details(self, hotel: Hotel):
+        return f"Hotel name: {hotel.name}, Stars: {hotel.stars}"
 
     def add_room(self, room_id: int, room_number: int, price_per_night: float, type_id: int):
         room = Room(room_id, room_number, price_per_night, type_id)
@@ -48,3 +49,26 @@ class HotelManager:
         if address not in self.__address: # irgendwie noch nicht ganz so logisch, daher wohl falsch
             self.__address.append(address)
             hotel.address = self
+
+    def search_hotels(self, city=None, stars=None, guests=None):
+        results = []
+
+        hotels = self.__hotel_dal.show_all_hotels()
+
+        for hotels in Hotel:  # wir haben keine Liste von Hotels, muss zwingend auf hotel_id referenziert werden?
+            if city and hotel.address.city.lower() != city.lower():
+                continue
+            if stars and hotel.stars < stars:
+                continue
+
+            for room in hotel.rooms:
+                if guests and room.room_type.max_guests < guests:
+                    continue
+                if not room.room_available:
+                    continue
+
+                # Sobald ein passender Raum gefunden wurde, reicht es – Hotel ist relevant
+                results.append(hotel)
+                break  # keine weiteren Zimmer prüfen
+
+        return results
