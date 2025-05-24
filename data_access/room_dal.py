@@ -14,11 +14,11 @@ class RoomDAL(BaseDAL):
                   )
         self.execute(sql, params)
 
-    def show_room_by_id(self, room: model.Room):
+    def show_room_by_id(self, room_id : int):
         sql = """
         SELECT * FROM Room WHERE room_id = ?
         """
-        params = (room.room_id,)
+        params = (room_id,)
         result = self.fetch_one(sql, params)
         if result:
             room_id, room_number, price_per_night = result
