@@ -17,7 +17,7 @@ class RoomTypeDAL(BaseDAL):
         SELECT * FROM Room_Type WHERE type_id = ?
         """
         params = (room_type.type_id,)
-        result = self.fetchone(sql, params)
+        result = self.fetch_one(sql, params)
         if result:
             type_id, description, max_guests = result
             return model.Room_Type(type_id, description, max_guests)
