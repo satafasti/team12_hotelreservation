@@ -49,5 +49,6 @@ class GuestDAL(BaseDAL):
         for row in results:
             guest_id, first_name, last_name, email, address_id = row
             guests.append(model.Guest(guest_id, first_name, last_name, email, address_id))
+
         return guests
 
