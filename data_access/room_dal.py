@@ -40,4 +40,14 @@ class RoomDAL(BaseDAL):
         params = (room.room_id,)
         self.execute(sql, params)
 
+    def show_all_rooms(self):
+        sql = "SELECT * FROM Room"
+        results = self.fetch_all(sql)  # kommt aus BaseDAL
+        rooms = []
+
+        for row in results:
+            room_id, hotel_id, room_number, type_id, price_per_night = row
+            rooms.append(model.Room(room_id, hotel_id, room_number, type_id, price_per_night))
+        return rooms
+
 
