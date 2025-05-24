@@ -38,6 +38,30 @@ class HotelManager:
         else:
             return "Zimmer nicht gefunden."
 
+    def search_hotels(self, city=None, stars=None, guests=None):
+        results = []
+
+        hotel = self.__hotel_dal.show_all_hotels()
+
+        for hotel in hotel:  # wir haben keine Liste von Hotels, muss zwingend auf hotel_id referenziert werden?
+            if city and hotel.address.city.lower() != city.lower():
+                continue
+            if stars and hotel.stars < stars:
+                continue
+
+            for room in hotel.rooms:
+                if guests and room.description.max_guests < guests:
+                    continue
+                if getattr(room, "room_available", True) is False:
+                    continue
+
+                # Sobald ein passender Raum gefunden wurde, reicht es – Hotel ist relevant
+                results.append(hotel)
+                break  # keine weiteren Zimmer prüfen
+
+        return results
+
+
 
     #def show_room_details(self):
      #   print(f"Hotel name: {room.name}, {self.__stars} Stars")
@@ -64,26 +88,3 @@ class HotelManager:
     #    hotel.address = self
 ###
 
-
-    def search_hotels(self, city=None, stars=None, guests=None):
-        results = []
-
-        hotel = self.__hotel_dal.show_all_hotels()
-
-        for hotel in hotel:  # wir haben keine Liste von Hotels, muss zwingend auf hotel_id referenziert werden?
-            if city and hotel.address.city.lower() != city.lower():
-                continue
-            if stars and hotel.stars < stars:
-                continue
-
-            for room in hotel.rooms:
-                if guests and room.description.max_guests < guests:
-                    continue
-                if getattr(room, "room_available", True) is False:
-                    continue
-
-                # Sobald ein passender Raum gefunden wurde, reicht es – Hotel ist relevant
-                results.append(hotel)
-                break  # keine weiteren Zimmer prüfen
-
-        return results
