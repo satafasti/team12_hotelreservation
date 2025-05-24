@@ -11,7 +11,7 @@ class RoomManager:
         self.__facility_name = []
 
     def create_room(self, room_id : int, room_number : int, price_per_night : float, description : Room_Type) -> Room:
-        return self.__room_dal.create_new_room(room_id, room_number, price_per_night, description)
+        return self.__room_dal.create_room(room_id, room_number, price_per_night, description)
 
     #def get_room_details(self, room: Room): #evtl. irgendwo anders ablegen statt hier => im HotelManager
         #return f"Room ID: {room.room_id}, Room Number: {room.room_number}, Price per Night: {room.price_per_night}, Room Type: {room.description}"
