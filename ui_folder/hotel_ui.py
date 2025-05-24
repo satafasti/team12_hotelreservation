@@ -33,6 +33,16 @@ def user_search_hotel():
 
 
 def admin_create_hotel():
+    print("Hallo - Bitte erstellen Sie ein neues Hotel.")
+    street = input("Gib die Strasse des Hotels ein: ")
+    city = input("Gib den Ort des Hotels ein: ")
+    zip_code = input("Gib den Zip-Code des Hotels ein: ")
+    name = input("Gib den Hotelname ein: ")
+    stars = input("Enter Hotel stars: ")
+    room_number = input("Enter room number: ")
+    description = input("Enter room type description: ")
+    max_guests = input("Enter max guests: ")
+    price_per_night = input("Enter price per night for the room: ")
 
 
 
