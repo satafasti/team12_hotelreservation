@@ -167,8 +167,8 @@ def search_hotels(city=None, stars=None, guests=None):
         for room in hotel.rooms:
             if guests and room.room_type.max_guests < guests:
                 continue
-            if not room.room_available:
-                continue
+            if not room.room_available: False #vermutlich unbrauchbar, weil mittels IDs gesucht werden muss
+            continue
 
             # Sobald ein passender Raum gefunden wurde, reicht es – Hotel ist relevant
             results.append(hotel)
@@ -197,7 +197,4 @@ else:
         print(f"- Hotelname: {hotel.name}")
         print(f"  Adresse: {hotel.address.street}, {hotel.address.zip_code} {hotel.address.city}")
         print(f"  Sterne: {hotel.stars}\n")
-
-
-test_logic
 
