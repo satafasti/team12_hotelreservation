@@ -31,11 +31,11 @@ class HotelDAL(BaseDAL):
 
         return hotels
 
-    def update_hotel(self, hotel_id : int):
+    def update_hotel(self, hotel_id : int, name:str, stars: int, address_id: int):
         sql = """
         UPDATE Hotel SET name = ? AND stars = ? WHERE hotel_id = ?
         """
-        params = (name, stars, hotel_id)
+        params = (name, stars, hotel_id, address_id)
         self.execute(sql, params)
 
     def delete_hotel(self, hotel: model.Hotel):
