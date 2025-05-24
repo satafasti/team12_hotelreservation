@@ -20,7 +20,7 @@ class Hotel:
         self.__name = name
         self.__stars = stars
         self.__rooms = rooms
-        self.__address = address #single instance of class Address, as of now no backwards link from address -> hotel necessary, to find all hotels in a city loop through existing instances by city
+        self.__address_id = address_id #single instance of class Address, as of now no backwards link from address -> hotel necessary, to find all hotels in a city loop through existing instances by city
 
     @property    
     def name(self):
@@ -52,8 +52,8 @@ class Hotel:
             print("Stars must be a number between 1 and 5.")
 
     @property
-    def address(self):
-        return self.__address
+    def address_id(self):
+        return self.__address_id
 
 
 
