@@ -23,7 +23,7 @@ class HotelDAL(BaseDAL):
 
         for row in results:
             hotel_id, name, stars, address_id = row
-            address = self.get_address_by_id(address_id)
+            address = self.get_address_by_id(address_id) #Tanja: hier hats jetzt neue error drin, weil get_address_by_id und rooms nirgends definiert ist
             rooms = self.get_rooms_by_hotel(hotel_id)  # brauchst du auch
 
             hotel = model.Hotel(hotel_id, name, stars, address, rooms, address_id)
