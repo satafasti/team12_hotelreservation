@@ -1,16 +1,20 @@
 import data_access
 from model import Room
-from model import Hotel
 from model import Room_Type
 
 
 class HotelManager:
     def __init__(self) -> None:
         self.__hotel_dal = data_access.HotelDAL()
+        self.__room_dal = data_access.RoomDAL()
         self.__rooms = []
 
-    def get_hotel_details(self, hotel: Hotel):
-        return f"Hotel name: {hotel.name}, Stars: {hotel.stars}"
+    def get_hotel_details(self, hotel_id : int):
+        hotel = self.__hotel_dal.show_hotel_by_id(hotel_id)
+        if hotel:
+            return f"Hotel name: {hotel.name}, Stars: {hotel.stars}"
+        else:
+            return "Hotel nicht gefunden."
 
     def add_room(self, room_id: int, room_number: int, price_per_night: float, type_id: Room_Type):
         room = Room(room_id, room_number, price_per_night, type_id)
@@ -27,8 +31,12 @@ class HotelManager:
             self.__rooms.remove(room)
 
 
-    def get_room_details(self, room: Room):
-        return f"Room ID: {room.room_id}, Room Number: {room.room_number}, Price per Night: {room.price_per_night}, Room Type: {room.description}"
+    def get_room_details(self, room_id : int, room_type : Room_Type):
+        room = self.__room_dal.show_room_by_id(room_id)
+        if room:
+            return f"Room ID: {room.room_id}, Room Number: {room.room_number}, Price per Night: {room.price_per_night}, Room Type: {room_type.description}"
+        else:
+            return "Zimmer nicht gefunden."
 
 
     #def show_room_details(self):
@@ -36,7 +44,7 @@ class HotelManager:
       #  for room in self.__rooms:
        #     print(room.get_room_details())
 
-    ## unclear if the show_room_details goes here and is correct? because we want to show the hotel details incl. the room details , only the room details will already be covered by the same function in the room class
+    ## unclear if the show_room_details goes here, and it is correct? because we want to show the hotel details incl. the room details , only the room details will already be covered by the same function in the room class
 
 ###
     #def add_new_hotel(self, hotel_id: int, name: str, stars: int, address: str) -> Hotel:
