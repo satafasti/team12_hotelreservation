@@ -90,4 +90,4 @@ def show_all_bookings(self):
         for row in results:
             booking_id, guest_id, room_id, check_in_date, check_out_date, is_cancelled, total_amount = row
             bookings.append(model.Booking(booking_id, guest_id, room_id, check_in_date, check_out_date, is_cancelled, total_amount))
-            return bookings
+        return bookings
