@@ -198,3 +198,6 @@ else:
         print(f"  Adresse: {hotel.address.street}, {hotel.address.zip_code} {hotel.address.city}")
         print(f"  Sterne: {hotel.stars}\n")
 
+
+test_logic
+
