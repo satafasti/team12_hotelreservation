@@ -40,7 +40,7 @@ class RoomFacilitiesDAL(BaseDAL):
 
     def show_rooms_by_facility_id(self, facilities: model.facilities):
         sql = """
-              SELECT room.room_id, room.room_number, room.price_per_night, room.description FROM Room room JOIN Room_Facilities roomfacilities ON room.room_id = roomfacilities.room_id
+              SELECT room.room_id, room.room_number, room.price_per_night FROM Room room JOIN Room_Facilities roomfacilities ON room.room_id = roomfacilities.room_id
               WHERE roomfacilities.facility_id = ?
               """
         params = (facilities.facility_id,)
